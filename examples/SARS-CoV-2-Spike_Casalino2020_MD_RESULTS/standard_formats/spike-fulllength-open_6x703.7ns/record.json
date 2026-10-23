@@ -1,0 +1,137 @@
+{
+  "identifier": "AMARO-SARSCOV2-SPIKE-OPEN",
+  "topic": "covid-19",
+  "tags": [
+    "spike",
+    "open-state",
+    "glycans",
+    "SARS-CoV-2"
+  ],
+  "title": "SARS-CoV-2 full-length spike glycoprotein, open state: all-atom MD",
+  "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+  "size_gb": 36.87,
+  "files": 6,
+  "lab": "Amaro Lab, UC San Diego",
+  "contact": "ramaro@ucsd.edu",
+  "system": {
+    "construct": "Full-length SARS-CoV-2 spike glycoprotein homotrimer, residues 16-1273 per chain (chains A, B, C; segments S1 16-685, S2 686-1273), in the open state (chain A RBD 'up'). Non-canonical residues: HSD/HSE neutral histidines, CYP palmitoylated cysteine. Shared trajectories hold protein + glycans only and are not aligned; water, ions and the POPC/POPS/POPI/POPE/CHL bilayer were stripped.",
+    "starting_structure": "PDB 6VSB (chain A RBD 'up')",
+    "glycan_profile": "66 N-glycans (22 per chain: G1-G22 chain A, G25-G46 chain B, G48-G69 chain C) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5 (complex, hybrid and oligomannose N-glycans).",
+    "total_atoms": 72759
+  },
+  "setup": {
+    "force_field": "CHARMM36 all-atom additive",
+    "water_model": "TIP3P",
+    "ions": "150 mM NaCl (Na+/Cl-), neutralising",
+    "software": "NAMD 2.14 (Frontera, TACC)",
+    "ensemble": "NPT",
+    "temperature_K": 310,
+    "pressure_bar": 1.01325,
+    "timestep_fs": 2
+  },
+  "sampling": {
+    "replicas": 6,
+    "complete_replicas": 6,
+    "planned_length_ns": null,
+    "length_per_replica_ns": 703.7,
+    "frame_interval_ps": 100,
+    "nominal_length_ns": null,
+    "replica_lengths_ns": [
+      1000.5,
+      1000.3,
+      1006.3,
+      404.3,
+      404.3,
+      406.5
+    ],
+    "total_ns": 4222.2,
+    "length_basis": "declared frame interval",
+    "replicas_detail": [
+      {
+        "id": "OPEN_R1",
+        "length_ns": 1000.5,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10005,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      },
+      {
+        "id": "OPEN_R2",
+        "length_ns": 1000.3,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10003,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      },
+      {
+        "id": "OPEN_R3",
+        "length_ns": 1006.3,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10063,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      },
+      {
+        "id": "OPEN_R4",
+        "length_ns": 404.3,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4043,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      },
+      {
+        "id": "OPEN_R5",
+        "length_ns": 404.3,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4043,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      },
+      {
+        "id": "OPEN_R6",
+        "length_ns": 406.5,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4065,
+        "path": "OPEN",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN"
+      }
+    ]
+  },
+  "data_availability": "Trajectories stored on lab storage; available on request",
+  "related_publication": "https://doi.org/10.1021/acscentsci.0c01056",
+  "license": "CC-BY-4.0",
+  "data_owner": {
+    "name": "Rommie E. Amaro",
+    "email": "ramaro@ucsd.edu",
+    "orcid": null,
+    "affiliation": "UC San Diego"
+  },
+  "access_level": null,
+  "ai_training": "by-agreement",
+  "data_location": {
+    "storage": "Amaro Lab GPFS storage, UC San Diego",
+    "path": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN",
+    "uri": null
+  },
+  "authors": "Lorenzo Casalino, Zied Gaieb, Jory A. Goldsmith, Christy K. Hjorth, Abigail C. Dommer, Aoife M. Harbison, Carl A. Fogarty, Emilia P. Barros, Bryn C. Taylor, Jason S. McLellan, Elisa Fadda, Rommie E. Amaro",
+  "description_basis": "declared",
+  "protocol": [],
+  "lab_glossary": {
+    "record_id": "OPEN/e0812b9a",
+    "md_keys": [
+      "OPEN/OPEN_R1",
+      "OPEN/OPEN_R2",
+      "OPEN/OPEN_R3",
+      "OPEN/OPEN_R4",
+      "OPEN/OPEN_R5",
+      "OPEN/OPEN_R6"
+    ]
+  },
+  "record": "spike-fulllength-open_6x703.7ns.json"
+}

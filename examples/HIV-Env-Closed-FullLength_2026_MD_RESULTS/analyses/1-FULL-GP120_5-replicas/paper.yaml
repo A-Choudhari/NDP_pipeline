@@ -1,0 +1,199 @@
+# paper.yaml -- the published article that goes with this dataset.
+#
+# Written by import_paper.py, edited by you. `page_paper_story.html` is built
+# from this and from the measured rows in data/ together; page_story.html does
+# not read it.
+#
+#   section:  where each figure goes on the page --
+#             system | moves | touch | solvent | paper
+#             A section that has no measured content on this page falls back to
+#             `paper`, so a figure can never be routed into nothing.
+#   caption:  as extracted. `caption_basis` says where the text was cut; a
+#             `run-on` one is the one to check.
+#   embed:    false keeps the figures out of the page and links to the article
+#             instead. Set automatically from the licence.
+title: N-Glycans modulate tilting of HIV-1 envelope glycoprotein
+doi: 10.1038/s41467-026-71874-2
+doi_basis: most frequent of 1 DOIs in the text, on 19 pages
+url: https://doi.org/10.1038/s41467-026-71874-2
+authors: null
+licence: CC-BY-4.0
+licence_basis: the article's own licence statement
+embed: true
+source_pdf: /home/maalbani/Downloads/N-Glycans modulate tilting of HIV-1 envelope glycoprotein
+  - 41467_2026_Article_71874.pdf
+ligatures:
+  U+E000: fi
+  U+E001: fl
+ligature_basis: scored against the system word list
+abstract: Human immunodeficiency virus-1 (HIV-1) remains a global health crisis, with over
+  40 million people living with the virus and no effective vaccine available. Central to HIV
+  infection and immune evasion is the envelope glycoprotein (Env), a heavily glycosylated
+  class I fusion protein that mediates viral entry and is the sole immunogenic target. Despite
+  the recent advancements provided by imaging techniques, the characterization of Env’s structure
+  and dynamics within its native membrane environment remains incomplete. Here, we present
+  microsecond-long, all-atom molecular dynamics simulations of the fulllength, glycosylated
+  Env glycoprotein embedded in a biologically relevant lipid bilayer. Our simulations, corroborated
+  by cryo-electron tomography, reveal a pronounced tilting motion of Env relative to the membrane.
+  Importantly, we identify a critical role for N-linked glycans at N88 and N611 in modulating
+  the transition to tilted conformations. Alongside illuminating the sites of vulnerability
+  within the glycan shield, the results presented here underscore Env tilting dynamics as
+  a feature that can be leveraged in immunogen design.
+abstract_basis: the paragraph the Introduction restates
+figures:
+- figure: 1
+  file: fig1.png
+  section: system
+  title: Modeling and simulations of the full-length, glycosylated HIV-1 Env trimer in the
+    closed state.
+  caption: 'Modeling and simulations of the full-length, glycosylated HIV-1 Env trimer in
+    the closed state. a Workflow of the assembly of the ectodomain, membrane-proximal external
+    region (MPER), transmembrane domain (TMD), and cytoplasmic tail (CT) domain into the full-length,
+    glycosylated model of the HIV-1 Env trimer embedded into an all-atom membrane bilayer
+    mimicking the composition of the viral budding site. The protein is depicted with light
+    blue cartoons, with each protomer differentiated by distinct shades. N-glycans are shown
+    in van der Waals (vdW) representation: GlcNAc in blue, mannose in green, fucose in red,
+    galactose in yellow, and sialic acid in purple. Lipid headgroups are depicted as vdW spheres,
+    with shades of purple (from darker to lighter) representing DPPC, POPE, POPS, PSM, and
+    POPC, and pink indicating CHOL. Lipid tails are shown in licorice representation. b Oblique
+    view of the fully assembled, glycosylated Env trimer embedded into an all-atom membrane
+    bilayer. c Close-up view of the Env’s membrane-interacting region, where the palmitoylated
+    cysteines within the CT are depicted with vdW spheres.'
+  caption_basis: blank line after a complete sentence
+  render: page 2 region re-rendered at 200 dpi
+  pixels: 1168x781
+- figure: 2
+  file: fig2.png
+  section: moves
+  title: MD simulations and Cryo-ET reveal pronounced Env tilting motion.
+  caption: 'MD simulations and Cryo-ET reveal pronounced Env tilting motion. a A representative
+    snapshot of the Env protein showing significant tilting motion relative to the membrane.
+    The Env is displayed with a transparent blue representation, the membrane with a purple
+    surface, and N-glycans are shown with thin blue sticks. N-glycans N88 and N611 are colored
+    in yellow and red, respectively. A tilt angle of ~30.0° is indicated by drawn yellow cylinders.
+    b The plot on the left displays the time evolution (x-axis, ns) of the Env tilt angle
+    (y-axis, degree) across the five independent MD simulation replicates for both the base
+    system (blue lines) and the N88A + N611A mutant (black lines). The plot on the right shows
+    the kernel density distribution (x-axis) of Env tilt angles (y-axis, degree). c Deconvoluted
+    tomogram slice of a virus-like particle showing Env (blue) coating the membrane surface
+    (purple). d Same tomogram slice as (c) with representative upright and tilted Envs indicated.
+    e Top: Inlay is a closer look at two Envs. An upright Env is on the left and a tilted
+    Env is on the right. Bottom: Upright and tilted conformations of Env extracted from MD
+    simulations are overlayed on the respective upright and tilted Envs shown in the panel
+    above. f Subtomogram average density of unliganded Env. The left panel shows a central
+    slice through the averaged density with dashed lines (1 and 2) indicating the positions
+    of the orthogonal sections along the trimer axis, which are displayed on the right. g
+    Histogram and box-and-whisker plot of the Env tilt angle distribution from the cryo-ET
+    dataset. Tilt angles were calculated for n = 4396 Env subtomogram particles extracted
+    from 239 independent tomograms (565 enveloped virus-like particles). Each data point represents
+    one Env trimer measurement. Values are binned by rounding to the nearest multiple of 3.
+    Range, interquartile range, and median values are shown. Source data are provided as a
+    Source Data file.'
+  caption_basis: the journal's source-data sentence
+  file_note: image taken from page 4; the caption is on page 5
+  render: page 4 region re-rendered at 200 dpi
+  pixels: 1326x1560
+- figure: 3
+  file: fig3.png
+  section: paper
+  title: Dissection of interactions between N88/N611 glycans and the viral membrane.
+  caption: Dissection of interactions between N88/N611 glycans and the viral membrane. a The
+    bar plot highlights the frequencies of single (N881 or N6111) or combined (N882, N6112,
+    N881 + N6111, N882 + N6111, N881 + N6112, N882 + N6112) contacts of N88 and N611 glycans
+    with the lipid bilayer accompanied by molecular representations of all interaction combinations
+    surrounding the plot. Contact frequencies were calculated and pooled across all simulations
+    and protomers and, for each category, are expressed as % frames with at least one contact
+    from that category. Env is depicted with a blue surface representation, N88 and N611 glycans
+    are shown with yellow and red sticks, respectively, whereas the membrane is displayed
+    with a purple surface. b Time evolution of the number of N88 (yellow lines) and N611 (red
+    lines) glycans interacting with the membrane (left y-axis), along with the corresponding
+    Env tilt angle in degree (black line, right y-axis) across simulation replicas. c Molecular
+    representation of glycans N88 (yellow sticks) and N611 (red sticks) inserted into the
+    lipid bilayer, illustrating their anchoring role during Env tilting.
+  caption_basis: blank line after a complete sentence
+  render: page 6 region re-rendered at 200 dpi
+  pixels: 1334x1357
+- figure: 4
+  file: fig4.png
+  section: moves
+  title: Conformational landscape explored by membrane-proximal external region (MPER) and
+    transmembrane domain (TMD).
+  caption: 'Conformational landscape explored by membrane-proximal external region (MPER)
+    and transmembrane domain (TMD). a Schematic representation of the two hinge angles analyzed:
+    MPER hinge angle (orange) and MPER–TMD (beige) hinge angle. b Kernel density distribution
+    (y-axis) of the MPER hinge angle (x-axis, degree). c Kernel density distribution (y-axis)
+    of the MPER–TMD hinge angle (x-axis, degree). The dashed lines indicate the initial angle
+    values derived from the starting model before simulations. d Representative conformations
+    from simulations and relative schematic illustrations showing the upright and tilted states
+    of the Env trimer, highlighting MPER and TMD adaptations as the trimer transitions to
+    tilted orientations relative to the membrane. Source data are provided as a Source Data
+    file.'
+  caption_basis: the journal's source-data sentence
+  render: page 7 region re-rendered at 200 dpi
+  pixels: 1313x488
+- figure: 5
+  file: fig5.png
+  section: paper
+  title: Glycan shield of HIV-1 Env.
+  caption: 'Glycan shield of HIV-1 Env. a, b Molecular representations of the HIV-1 Env trimer’s
+    glycan shield, shown from a side view (a) and a top-down view (b). Glycans are shown as
+    a blue mesh ensemble of overlaid conformations sampled during a 1 µs-long simulation.
+    The protein is represented by a cyan surface, while the membrane is depicted in purple,
+    with lipid headgroups represented as van der Waals spheres. c Quantification of the accessible
+    surface area (cyan), glycanshielded area (dark blue), and membrane-occluded area (purple)
+    in Å2 across probe radii ranging from 1.4 Å to 8 Å (x-axis), with relative percentages
+    indicated within each stacked bar. For each stacked bar, values were pooled across five
+    independent simulation trajectories (n = 5) initiated with distinct velocity seeds. Within
+    each trajectory, surface areas were calculated over 1051 sampled frames. Error bars indicate
+    the standard deviation of the pooled values across all sampled frames. d Overview of the
+    HIV-1 Env trimer’s major antigenic regions. The protein is represented with a light gray
+    surface, and the antigenic regions are highlighted in distinct colors: CD4 binding site
+    (CD4bs, pink), V1V2 (green), V3 (cyan), silent face (dark gray), gp120-gp41 interface
+    (red), fusion peptide (FP, yellow), and the membrane-proximal external region (MPER, orange).
+    Glycans are depicted as blue sticks. e Alternate representation of the Env trimer as in
+    (d), but with glycans shown as a blue mesh ensemble of overlaid conformations sampled
+    during a 1 µs-long simulation. f Quantification of the accessible surface area (light
+    gray), glycanshielded area (dark blue), and membrane-occluded area (purple) for the antigenic
+    regions represented in (e, f) using a probe radius of 7.2 Å. For each stacked bar, values
+    were pooled across five independent simulation trajectories (n = 5) initiated with distinct
+    velocity seeds. Within each trajectory, surface areas were calculated over 1051 sampled
+    frames and three protomers per frame (15,765 total measurements). Error bars indicate
+    the standard deviation of the pooled values across all sampled frames. Source data are
+    provided as a Source Data file.'
+  caption_basis: the journal's source-data sentence
+  render: page 8 region re-rendered at 200 dpi
+  pixels: 1334x1194
+- figure: 6
+  file: fig6.png
+  section: moves
+  title: Accessibility of the membrane-proximal external region (MPER) peptide epitope relative
+    to Env tilt angle.
+  caption: 'Accessibility of the membrane-proximal external region (MPER) peptide epitope
+    relative to Env tilt angle. a Molecular representation of the HIV-1 Env in a tilted conformation
+    shown from a side view, with the MPER peptide epitope (residues 671–683) highlighted in
+    yellow near the viral membrane. N-glycans are depicted as thin, dark blue sticks, while
+    the protein is represented with a light blue surface, with each protomer differentiated
+    by distinct shades. The membrane is depicted in purple, with lipid headgroups represented
+    as van der Waals spheres. b Rotated and zoomed-in view of the MPER peptide region (yellow),
+    focusing on its spatial arrangement within the viral membrane (purple), with two MPER
+    peptides positioned closer to the viewpoint and prominently exposed, and the third further
+    away buried in the membrane. c The 10E8 Fab (green cartoons) was docked onto the Env by
+    fitting the MPER peptide from the 10E8 Fab–MPER complex (PDB ID: 4G6F56) to the most exposed
+    MPER region sampled in our simulations, demonstrating how it fits into the structural
+    pocket formed by tilting-induced rearrangements of the MPER. d Quantification of the MPER
+    accessible surface area (yellow), glycan-shielded area (dark blue), and membrane-occluded
+    area (purple) as a function of Env tilt angle (x-axis: 0–10°, 10–20°, 20–30°, >30°). Values
+    were pooled across five independent simulation trajectories initiated with distinct velocity
+    seeds and grouped into four tilt-angle ensembles. For each frame, only the protomer with
+    the maximum MPER accessible surface area was considered. The number of sampled frames
+    contributing to each ensemble was 10,625, 6,085, 23,228, and 12,567, respectively. For
+    each ensemble, mean surface areas were calculated from all sampled frames within that
+    bin. Error bars represent the standard error of the mean (SEM) calculated from the pooled
+    frame-level values in each ensemble. Source data are provided as a Source Data file.'
+  caption_basis: the journal's source-data sentence
+  render: page 9 region re-rendered at 200 dpi
+  pixels: 1332x1074
+journal: Nature Communications
+year: 2026
+volume: 17
+article: '5206'

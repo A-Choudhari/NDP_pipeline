@@ -1,0 +1,48 @@
+{
+ "bundle": "membrane",
+ "inputs": {
+  "base_model.lipids_protein_glycans.R1.dcd": [
+   32322612276,
+   1777978137
+  ],
+  "base_model.lipids_protein_glycans.R2.dcd": [
+   32322612276,
+   1777978656
+  ],
+  "base_model.lipids_protein_glycans.R3.dcd": [
+   32322612276,
+   1777979172
+  ],
+  "base_model.lipids_protein_glycans.R4.dcd": [
+   32322612276,
+   1777979683
+  ],
+  "base_model.lipids_protein_glycans.R5.dcd": [
+   32322612276,
+   1777980213
+  ],
+  "base_model.lipids_protein_glycans.psf": [
+   76340941,
+   1777977625
+  ]
+ },
+ "outputs": {
+  "1-FULL-GP120_5-replicas__structure.parquet": "545b0d8d9b1bccab",
+  "1-FULL-GP120_5-replicas__structure.tsv": "34e05a330cdbbd9a"
+ },
+ "rows": 654771,
+ "selections": {
+  "glycans": "segid GA1 to GA23 GB1 to GB23 GC1 to GC23",
+  "heavy": "not name H*",
+  "ions": "ions",
+  "protein": "protein",
+  "receptor": "segid A120 A41 B120 B41 C120 C41",
+  "solute": "not water and not ions",
+  "water": "water"
+ },
+ "spec_hash": "3d1d6a01eb4b",
+ "stage": "structure",
+ "stride": 1,
+ "system": "MDs/70c12cdf",
+ "written": "2026-09-24T19:17:14"
+}

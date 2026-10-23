@@ -1,0 +1,358 @@
+# settings.yaml -- the one file to edit for this folder.
+#
+# Written by the pipeline, edited by you. Anything the tools can MEASURE they
+# fill in; anything only you know stays yours and is never overwritten. Re-run
+# the pipeline after editing.
+#
+#   folder:                 what is indexed: corpora, system labels, and what a
+#                           trajectory file really is (`stages:`)
+#   production_lengths_ns:  how long a full production MD is here. An MD that
+#                           reaches one of these is a production MD of that
+#                           length; a shorter one is flagged and left out of the
+#                           NDP records.
+#   datasets:               one block per dataset -- the science: authors, the
+#                           paper, licence, PDB entries, water model
+#   ndp:                    the catalogue record: title, construct, glycans,
+#                           ions, and which stages and MDs it lists
+#
+# Everything the run produces is in MD_RESULTS/ beside this file; the machinery
+# lives in .md_pipeline/ and can be deleted and rebuilt at any time.
+
+collection_prefix: SARS-CoV-2-Spike
+folder:
+  owner: lcasalino
+  root: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION
+  topics:
+  - SARS-CoV-2
+  corpora:
+  - name: MUTANT
+    path: MUTANT
+    engine: auto
+  - name: OPEN
+    path: OPEN
+    engine: auto
+  - name: CLOSED
+    path: CLOSED
+    engine: auto
+  prune:
+  - conda_pkgs
+  - site-packages
+  - __pycache__
+  - .git
+  - node_modules
+  - .ipynb_checkpoints
+  - .cache
+  - .conda
+  - .local
+  - envs
+  - env
+  - venv
+  - .venv
+  - miniconda3
+  - anaconda3
+  - lib
+  - lib64
+  - include
+  - share
+  - bin
+  - man
+  - .Trash
+  - toppar
+  - vendor
+  - vendored
+  - third_party
+  - thirdparty
+  - external
+  - exampleData
+  - example_data
+  - examples
+  - sample_data
+  - sampledata
+  - example-output
+  - example_output
+  - exampleOutput
+  - test_data
+  - testdata
+  - tests
+  - testing
+  - demo
+  - demos
+  - MDDB_substrate
+  - NDP_PIPELINE
+  - MDDB_PIPELINE
+  - MD_RESULTS
+  min_table_bytes: 50000
+  deep_scan: false
+  write_in_place: false
+
+  # Confirmed by Lorenzo Casalino 2026-09-30: the six (three for CLOSED)
+  # spike_*_prot_glyc_amarolab_<n>.dcd files in each corpus are the production
+  # trajectories themselves -- independent replicas, not restart segments.
+  stages:
+    production: '_amarolab_[0-9]+\.dcd$'
+
+  # --- what each run IS (optional) --------------------------------------------
+  # `system` and `condition` are `unknown` for every run until you say what your
+  # paths mean. Nothing is ever guessed: a label appears only where a rule you
+  # wrote matches. Uncomment and edit.
+  #
+  # Matched case-insensitively against each run's path relative to `root`, so a
+  # rule can key on a parent directory -- which is usually where the system lives.
+  # The FIRST declared match wins, so put specific rules above general ones.
+  #
+  # systems:
+  #   gp120-open:   ["3-OCCLUDED-OPEN", "4-OPEN"]   # one label, several patterns
+  #   gp120-deglyc: "2-NO-GLYC"
+  #
+  # conditions:
+  #   apo:  "/apo(/|$)"
+  #   holo: "/holo(/|$)"
+  #
+  # When the directory NAME is the thing simulated -- one folder per sequence,
+  # say -- take the label from the path instead of writing one rule per folder.
+  # The capture group becomes the label, used verbatim:
+  #
+  # systems_from:
+  #   - "GENTILE/[0-9]+-([ACGUT]{6})"     # 10-TGGGGC -> TGGGGC
+  #
+  # An explicit `systems:` entry beats a captured one, which is how you correct a
+  # single directory whose name lies. A pattern that cannot compile stops the
+  # build and names itself, rather than silently labelling nothing.
+  #
+  # After editing, re-run substrate_build.py and check it took:
+  #   python3 .../ask.py sql "SELECT system, COUNT(*) FROM runs GROUP BY system"
+
+  # --- what each trajectory file IS (optional) ---------------------------------
+  # Every trajectory file is given a stage from its name and its directory:
+  # `eq`, `heat`, `min` -> not production; `prod`, `pr`, `md` -> production;
+  # `stripped`, `-old`, `frames` -> not the simulation itself.
+  #
+  # A .dcd whose name says nothing (`base_model.R1.dcd`, `all.dcd`, `4092-5091.dcd`)
+  # is counted as PRODUCTION BY DEFAULT when its directory holds no other
+  # production file. Until you confirm it, every MD built from such a file is in
+  # state `review` with the issue `stage_assumed`, and SUBSTRATE/reports/
+  # inventory.md lists each one. Other formats whose name says nothing stay
+  # `unresolved` and are not counted.
+  #
+  # Say what a file really is here, and that wins over both. Same shape as
+  # `systems:`: a stage, then a pattern (or a list), matched case-insensitively
+  # against the FILE's path relative to `root`. The first declared match wins.
+  # Stages: production, equilibration, heating, minimisation, merged, stripped,
+  # superseded, derived.
+  #
+  # stages:
+  #   derived:    ['/RMSF/all\.dcd$', '/benchmark/', '_movie\.dcd$']
+  #   stripped:   '_prot\.dcd$'
+  #   production: 'base_model\..*\.R[0-9]+\.dcd$'
+  #
+  # Write patterns in single quotes: YAML reads a backslash inside double quotes
+  # as an escape, and '\.' (a literal dot) is then refused.
+  #
+  # After editing, re-run substrate_build.py, then mddb_build.py.
+
+# --- how long a full production MD is here -----------------------------------
+# An MD that reaches one of these lengths (2 % tolerance) is a production MD of
+# that length; one shorter than all of them is flagged `short_of_nominal` and
+# left out of the NDP records. A dataset can declare its own list.
+
+production_lengths_ns: [400, 500, 1000, 1500]
+
+datasets:
+
+  # ---------------------------------------------------------------------
+  # OPEN: 1 production runs, 36.9 GB, sampling not readable from headers, replicas unnamed
+  # ---------------------------------------------------------------------
+  - id: OPEN
+    paths:
+      - OPEN
+    name: OPEN
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling."
+    authors: ["Lorenzo Casalino", "Zied Gaieb", "Jory A. Goldsmith", "Christy K. Hjorth", "Abigail C. Dommer", "Aoife M. Harbison", "Carl A. Fogarty", "Emilia P. Barros", "Bryn C. Taylor", "Jason S. McLellan", "Elisa Fadda", "Rommie E. Amaro"]  # who should be cited
+    contact: ramaro@ucsd.edu  # an e-mail that will still work in 5 years
+    type: trajectory        # trajectory | ensemble
+    method: Classical MD
+    license: "Creative Commons Attribution 4.0 International"  # e.g. Creative Commons Attribution 4.0 International
+    linkcense: https://creativecommons.org/licenses/by/4.0/  # the licence URL
+    citation: "Casalino, L.; Gaieb, Z.; Goldsmith, J. A.; Hjorth, C. K.; Dommer, A. C.; Harbison, A. M.; Fogarty, C. A.; Barros, E. P.; Taylor, B. C.; McLellan, J. S.; Fadda, E.; Amaro, R. E. Beyond Shielding: The Roles of Glycans in the SARS-CoV-2 Spike Protein. ACS Cent. Sci. 2020, 6 (10), 1722-1734. https://doi.org/10.1021/acscentsci.0c01056"
+    thanks: "Simulations ran on Frontera at TACC (NSF). Glycan models from the Fadda group, Maynooth University."
+    collections: SARS-CoV-2-Spike
+    groups: Amaro Lab  # author group, e.g. Amaro Lab
+    pdb_ids: [6VSB]
+    forced_references: []   # UniProt; 'noref' for constructs
+    ligands: []             # {pubchem: 1986} etc.
+    wat: TIP3P  # water model - AMBER only; set by hand for NAMD
+    multimeric: trimer  # monomer | dimer | trimer ...
+    interactions: []        # {name, agent_1, selection_1, ...}
+    pbc_selection: auto     # verify for membrane systems
+
+
+  # ---------------------------------------------------------------------
+  # MUTANT: 1 production runs, 36.7 GB, sampling not readable from headers, replicas unnamed
+  # ---------------------------------------------------------------------
+  - id: MUTANT
+    paths:
+      - MUTANT
+    name: MUTANT
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions, protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling."
+    authors: ["Lorenzo Casalino", "Zied Gaieb", "Jory A. Goldsmith", "Christy K. Hjorth", "Abigail C. Dommer", "Aoife M. Harbison", "Carl A. Fogarty", "Emilia P. Barros", "Bryn C. Taylor", "Jason S. McLellan", "Elisa Fadda", "Rommie E. Amaro"]  # who should be cited
+    contact: ramaro@ucsd.edu  # an e-mail that will still work in 5 years
+    type: trajectory        # trajectory | ensemble
+    method: Classical MD
+    license: "Creative Commons Attribution 4.0 International"  # e.g. Creative Commons Attribution 4.0 International
+    linkcense: https://creativecommons.org/licenses/by/4.0/  # the licence URL
+    citation: "Casalino, L.; Gaieb, Z.; Goldsmith, J. A.; Hjorth, C. K.; Dommer, A. C.; Harbison, A. M.; Fogarty, C. A.; Barros, E. P.; Taylor, B. C.; McLellan, J. S.; Fadda, E.; Amaro, R. E. Beyond Shielding: The Roles of Glycans in the SARS-CoV-2 Spike Protein. ACS Cent. Sci. 2020, 6 (10), 1722-1734. https://doi.org/10.1021/acscentsci.0c01056"
+    thanks: "Simulations ran on Frontera at TACC (NSF). Glycan models from the Fadda group, Maynooth University."
+    collections: SARS-CoV-2-Spike
+    groups: Amaro Lab  # author group, e.g. Amaro Lab
+    pdb_ids: [6VSB]
+    forced_references: []   # UniProt; 'noref' for constructs
+    ligands: []             # {pubchem: 1986} etc.
+    wat: TIP3P  # water model - AMBER only; set by hand for NAMD
+    multimeric: trimer  # monomer | dimer | trimer ...
+    interactions: []        # {name, agent_1, selection_1, ...}
+    pbc_selection: auto     # verify for membrane systems
+
+
+  # ---------------------------------------------------------------------
+  # CLOSED: 1 production runs, 15.1 GB, sampling not readable from headers, replicas unnamed
+  # ---------------------------------------------------------------------
+  - id: CLOSED
+    paths:
+      - CLOSED
+    name: CLOSED
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the closed state (all RBDs 'down'), protein + glycans only (not aligned). PSF and DCD files are provided. 3 replicas."
+    authors: ["Lorenzo Casalino", "Zied Gaieb", "Jory A. Goldsmith", "Christy K. Hjorth", "Abigail C. Dommer", "Aoife M. Harbison", "Carl A. Fogarty", "Emilia P. Barros", "Bryn C. Taylor", "Jason S. McLellan", "Elisa Fadda", "Rommie E. Amaro"]  # who should be cited
+    contact: ramaro@ucsd.edu  # an e-mail that will still work in 5 years
+    type: trajectory        # trajectory | ensemble
+    method: Classical MD
+    license: "Creative Commons Attribution 4.0 International"  # e.g. Creative Commons Attribution 4.0 International
+    linkcense: https://creativecommons.org/licenses/by/4.0/  # the licence URL
+    citation: "Casalino, L.; Gaieb, Z.; Goldsmith, J. A.; Hjorth, C. K.; Dommer, A. C.; Harbison, A. M.; Fogarty, C. A.; Barros, E. P.; Taylor, B. C.; McLellan, J. S.; Fadda, E.; Amaro, R. E. Beyond Shielding: The Roles of Glycans in the SARS-CoV-2 Spike Protein. ACS Cent. Sci. 2020, 6 (10), 1722-1734. https://doi.org/10.1021/acscentsci.0c01056"
+    thanks: "Simulations ran on Frontera at TACC (NSF). Glycan models from the Fadda group, Maynooth University."
+    collections: SARS-CoV-2-Spike
+    groups: Amaro Lab  # author group, e.g. Amaro Lab
+    pdb_ids: [6VXX]
+    forced_references: []   # UniProt; 'noref' for constructs
+    ligands: []             # {pubchem: 1986} etc.
+    wat: TIP3P  # water model - AMBER only; set by hand for NAMD
+    multimeric: trimer  # monomer | dimer | trimer ...
+    interactions: []        # {name, agent_1, selection_1, ...}
+    pbc_selection: auto     # verify for membrane systems
+
+ndp:
+  defaults:
+    lab: "Amaro Lab, UC San Diego"
+    data_availability: "Trajectories stored on lab storage; available on request"
+    keywords: [molecular dynamics, Amaro Lab]
+    base_url:    # where records/ is hosted, e.g. https://raw.githubusercontent.com/<org>/<repo>/main/records
+    protocol: production    # production (published) | all (+ min/heating/NPT) | none
+    lengths: all    # all (every replica, marked) | nominal (only full-length ones)
+
+  datasets:
+    CLOSED:
+      glycan_profile: "66 N-glycans (22 per chain: G1-G22 chain A, G25-G46 chain B, G48-G69 chain C) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5 (complex, hybrid and oligomannose N-glycans)."
+      ions: "150 mM NaCl (Na+/Cl-), neutralising"
+      water_model: TIP3P
+      related_publication: https://doi.org/10.1021/acscentsci.0c01056
+      keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+    MUTANT:
+      glycan_profile: "60 N-glycans (20 per chain: G6/G7, G30/G31 and G53/G54 removed with the N165A and N234A substitutions) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5."
+      ions: "150 mM NaCl (Na+/Cl-), neutralising"
+      water_model: TIP3P
+      related_publication: https://doi.org/10.1021/acscentsci.0c01056
+      keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+    OPEN:
+      glycan_profile: "66 N-glycans (22 per chain: G1-G22 chain A, G25-G46 chain B, G48-G69 chain C) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5 (complex, hybrid and oligomannose N-glycans)."
+      ions: "150 mM NaCl (Na+/Cl-), neutralising"
+      water_model: TIP3P
+      related_publication: https://doi.org/10.1021/acscentsci.0c01056
+      keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+
+  systems:
+
+  # ----------------------------------------------------------------------
+  # CLOSED/d8dbb86a: 1 MD(s), 72,759 atoms, length unknown, program unknown
+  #   CLOSED  (CLOSED)
+  #
+  #   No timestep in these trajectory headers, but the frames were counted (17,314).
+  #   Write `frame_interval_ps:` below and the lengths follow from it.
+  # ----------------------------------------------------------------------
+  - id: CLOSED/d8dbb86a
+    identifier: AMARO-SARSCOV2-SPIKE-CLOSED
+    topic: covid-19
+    tags: [spike, closed-state, glycans, SARS-CoV-2]
+    title: "SARS-CoV-2 full-length spike glycoprotein, closed state: all-atom MD"
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the closed state (all RBDs 'down'), protein + glycans only (not aligned). PSF and DCD files are provided. 3 replicas."
+    force_field: "CHARMM36 all-atom additive"
+    water_model: TIP3P
+    software: "NAMD 2.14 (Frontera, TACC)"
+    ensemble: NPT
+    temperature_K: 310
+    pressure_bar: 1.01325
+    timestep_fs: 2
+    frame_interval_ps: 100
+    construct: "Full-length SARS-CoV-2 spike glycoprotein homotrimer, residues 16-1273 per chain (chains A, B, C; segments S1 16-685, S2 686-1273), in the closed state (all RBDs 'down'). Non-canonical residues: HSD/HSE neutral histidines, CYP palmitoylated cysteine. Shared trajectories hold protein + glycans only and are not aligned; water, ions and the POPC/POPS/POPI/POPE/CHL bilayer were stripped."
+    starting_structure: "PDB 6VXX (all RBDs 'down')"
+    glycan_profile: "66 N-glycans (22 per chain: G1-G22 chain A, G25-G46 chain B, G48-G69 chain C) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5 (complex, hybrid and oligomannose N-glycans)."
+    ions: "150 mM NaCl (Na+/Cl-), neutralising"
+    related_publication: https://doi.org/10.1021/acscentsci.0c01056
+    keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+    slug: spike-fulllength-closed
+
+  # ----------------------------------------------------------------------
+  # MUTANT/783dd3bb: 1 MD(s), 71,294 atoms, length unknown, program unknown
+  #   MUTANT  (MUTANT)
+  #
+  #   No timestep in these trajectory headers, but the frames were counted (42,912).
+  #   Write `frame_interval_ps:` below and the lengths follow from it.
+  # ----------------------------------------------------------------------
+  - id: MUTANT/783dd3bb
+    identifier: AMARO-SARSCOV2-SPIKE-N165A_N234A_MUTANT
+    topic: covid-19
+    tags: [spike, open-state, glycans, glycan-deletion, N165A, N234A, SARS-CoV-2]
+    title: "SARS-CoV-2 full-length spike glycoprotein, open state, N165A/N234A: all-atom MD"
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions, protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling."
+    force_field: "CHARMM36 all-atom additive"
+    water_model: TIP3P
+    software: "NAMD 2.14 (Frontera, TACC)"
+    ensemble: NPT
+    temperature_K: 310
+    pressure_bar: 1.01325
+    timestep_fs: 2
+    frame_interval_ps: 100
+    construct: "Full-length SARS-CoV-2 spike glycoprotein homotrimer, residues 16-1273 per chain (chains A, B, C; segments S1 16-685, S2 686-1273), in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions. Non-canonical residues: HSD/HSE neutral histidines, CYP palmitoylated cysteine. Shared trajectories hold protein + glycans only and are not aligned; water, ions and the POPC/POPS/POPI/POPE/CHL bilayer were stripped."
+    starting_structure: "PDB 6VSB (chain A RBD 'up'), with N165A and N234A substitutions"
+    glycan_profile: "60 N-glycans (20 per chain: G6/G7, G30/G31 and G53/G54 removed with the N165A and N234A substitutions) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5."
+    ions: "150 mM NaCl (Na+/Cl-), neutralising"
+    related_publication: https://doi.org/10.1021/acscentsci.0c01056
+    keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+    slug: spike-fulllength-open-N165A-N234A
+
+  # ----------------------------------------------------------------------
+  # OPEN/e0812b9a: 1 MD(s), 72,759 atoms, length unknown, program unknown
+  #   OPEN  (OPEN)
+  #
+  #   No timestep in these trajectory headers, but the frames were counted (42,222).
+  #   Write `frame_interval_ps:` below and the lengths follow from it.
+  # ----------------------------------------------------------------------
+  - id: OPEN/e0812b9a
+    identifier: AMARO-SARSCOV2-SPIKE-OPEN
+    topic: covid-19
+    tags: [spike, open-state, glycans, SARS-CoV-2]
+    title: "SARS-CoV-2 full-length spike glycoprotein, open state: all-atom MD"
+    description: "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling."
+    force_field: "CHARMM36 all-atom additive"
+    water_model: TIP3P
+    software: "NAMD 2.14 (Frontera, TACC)"
+    ensemble: NPT
+    temperature_K: 310
+    pressure_bar: 1.01325
+    timestep_fs: 2
+    frame_interval_ps: 100
+    construct: "Full-length SARS-CoV-2 spike glycoprotein homotrimer, residues 16-1273 per chain (chains A, B, C; segments S1 16-685, S2 686-1273), in the open state (chain A RBD 'up'). Non-canonical residues: HSD/HSE neutral histidines, CYP palmitoylated cysteine. Shared trajectories hold protein + glycans only and are not aligned; water, ions and the POPC/POPS/POPI/POPE/CHL bilayer were stripped."
+    starting_structure: "PDB 6VSB (chain A RBD 'up')"
+    glycan_profile: "66 N-glycans (22 per chain: G1-G22 chain A, G25-G46 chain B, G48-G69 chain C) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5 (complex, hybrid and oligomannose N-glycans)."
+    ions: "150 mM NaCl (Na+/Cl-), neutralising"
+    related_publication: https://doi.org/10.1021/acscentsci.0c01056
+    keywords: [SARS-CoV-2, spike glycoprotein, glycan shield, molecular dynamics, NAMD, CHARMM36]
+    slug: spike-fulllength-open

@@ -1,0 +1,10 @@
+# Where `collect_pipeline.sh --all` looks for MD_RESULTS directories.
+#
+# One root per line. The search never follows a symlink and stops at depth 7.
+# Nothing is ever written into a source. MD_COLLECT_ROOTS (colon-separated)
+# overrides this list; --root DIR overrides both.
+#
+# Example:
+# roots:
+#   - /data/our-lab/simulations
+roots:

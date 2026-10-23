@@ -1,0 +1,41 @@
+# The one environment this toolkit runs in.
+#
+# WHY A NEW ONE. The machine's two usable stacks are split down the middle:
+# `mwf_env` has MDAnalysis 2.10 and netCDF4 but no plotly, no pyarrow; the base
+# anaconda has the whole viz stack but MDAnalysis 2.7 and no netCDF4 -- and
+# `kaleido` is missing from every env, so plotly cannot write a static image
+# anywhere on this box. Analysis and figures have to meet in one place.
+#
+#   conda env create -f environment.yml          # ~10 minutes, ~3 GB
+#   conda activate mdviz
+#
+# cpptraj is deliberately NOT here: the parallel build lives outside conda at
+# cpptraj from AmberTools (export CPPTRAJ=/path/to/cpptraj if not on PATH) and
+# is reached by sourcing that tree's amber.sh. VMD (1.9.4a57, headless with
+# Tachyon) is likewise external.
+name: mdviz
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  # --- reading trajectories -------------------------------------------------
+  - mdanalysis>=2.10
+  - mdtraj
+  - netcdf4                 # AMBER NetCDF, which base anaconda cannot read
+  # --- numerics -------------------------------------------------------------
+  - numpy
+  - scipy
+  - pandas
+  - pyarrow                 # Parquet: the per-frame tables every figure reads
+  - h5py
+  - numba                   # the hot loops in the solvent stages
+  # --- figures and pages ----------------------------------------------------
+  - matplotlib
+  - plotly
+  - python-kaleido          # static PNG/PDF out of plotly; missing everywhere else
+  - bokeh
+  - panel
+  # --- plumbing -------------------------------------------------------------
+  - pyyaml
+  - pytest
+  - tqdm

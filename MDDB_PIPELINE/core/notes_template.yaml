@@ -1,0 +1,58 @@
+# curated.yaml -- your claims ledger.
+#
+# The registry (registry/*.parquet) is mechanical: it records what is on disk.
+# THIS file is where human knowledge lives, and it is the half that stops a
+# wrong number spreading.
+#
+# The rule that matters: every quantitative claim carries its source, its
+# sample size, its method, and a `status`. When a result is replaced you set
+# the old entry to `superseded` and point `superseded_by` at what replaced it
+# -- you never delete it. That way `ask.py superseded` can list everything
+# stale in one command.
+#
+# Nothing here is required. An empty file is fine; the registry still builds.
+# Add entries as you learn things.
+
+# Quantitative claims.
+facts: []
+# - id: fact.example
+#   topic: binding
+#   claim: Residue X contacts the epitope in 82% of frames
+#   value: 82
+#   unit: percent
+#   n: 3 replicas x 500 ns
+#   method: 4.5 A heavy-atom cutoff, every frame
+#   source_path: ANALYSIS/contacts/summary.tsv
+#   date: 2026-01-01
+#   status: current            # current | superseded | provisional | retracted
+#   superseded_by:
+#   confidence: high
+
+# Traps that cost you time. Highest value-per-line in this file.
+gotchas: []
+# - id: trap.example
+#   area: analysis
+#   rule: Do not use `measure sasa` with a probe radius above ~15 A in VMD
+#   why: It silently returns wrong values instead of failing
+#   evidence: compared against Shrake-Rupley on the same frames
+#   severity: high
+
+# Data directories, with the caveats that make their numbers usable.
+datasets: []
+# - id: ds.example
+#   path: PROJECT/data
+#   kind: tsv
+#   what: Per-frame contact occupancy
+#   rows: 81771
+#   provenance: 3 replicas x 500 ns, stride 1
+#   caveats: Values are censored at the 30 A cap; treat capped rows as lower bounds
+#   status: current
+
+# Document status. The scanner fills in everything EXCEPT status and summary --
+# those are yours, because a guessed status is how a stale document keeps
+# getting cited.
+docs: []
+# - path: NOTES/methods.md
+#   status: superseded
+#   superseded_by: NOTES/methods_v2.md
+#   summary: Out of date -- describes the old glycan build.

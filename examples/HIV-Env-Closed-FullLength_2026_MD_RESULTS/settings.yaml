@@ -1,0 +1,353 @@
+# settings.yaml -- the one file to edit for this folder.
+#
+# Written by the pipeline, edited by you. Anything the tools can MEASURE they
+# fill in; anything only you know stays yours and is never overwritten. Re-run
+# the pipeline after editing.
+#
+#   folder:                 what is indexed: corpora, system labels, and what a
+#                           trajectory file really is (`stages:`)
+#   production_lengths_ns:  how long a full production MD is here. An MD that
+#                           reaches one of these is a production MD of that
+#                           length; a shorter one is flagged and left out of the
+#                           NDP records.
+#   datasets:               one block per dataset -- the science: authors, the
+#                           paper, licence, PDB entries, water model
+#   ndp:                    the catalogue record: title, construct, glycans,
+#                           ions, and which stages and MDs it lists
+#
+# Everything the run produces is in MD_RESULTS/ beside this file; the machinery
+# lives in .md_pipeline/ and can be deleted and rebuilt at any time.
+
+# The name this project's records take in the shared collection at
+# MD_NDP_DATA (MD_COLLECT). Must stay ABOVE `folder:`: the editors
+# that fill in a section append at its end and stop at the next
+# column-zero key, so a line put inside a section would be moved.
+collection_prefix: Env-Closed-FullLength
+
+folder:
+  owner: maalbani
+  root: /net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs
+  topics:
+  - HIV-1
+  - Lipids-Aerosols
+  - Glycans-Mucins
+  - Docking-screening
+  corpora:
+  - name: SASA-384-401
+    path: SASA-384-401
+    engine: auto
+  - name: MLD-421-433
+    path: MLD-421-433
+    engine: auto
+  - name: MLD-288-306
+    path: MLD-288-306
+    engine: auto
+  - name: MLD-296-306
+    path: MLD-296-306
+    engine: auto
+  - name: MLD-421-431
+    path: MLD-421-431
+    engine: auto
+  - name: MLD-416-433
+    path: MLD-416-433
+    engine: auto
+  - name: 100-stride-MLD
+    path: 100-stride-MLD
+    engine: auto
+  - name: TRP395
+    path: TRP395
+    engine: auto
+  - name: STRIP_FULL
+    path: STRIP_FULL
+    engine: auto
+  - name: SASA-384-401-PERRESIDUE
+    path: SASA-384-401-PERRESIDUE
+    engine: auto
+  - name: SASA-384-401-exact
+    path: SASA-384-401-exact
+    engine: auto
+  - name: pics
+    path: pics
+    engine: auto
+  - name: SASA
+    path: SASA
+    engine: auto
+  prune:
+  - conda_pkgs
+  - site-packages
+  - __pycache__
+  - .git
+  - node_modules
+  - .ipynb_checkpoints
+  - .cache
+  - .conda
+  - .local
+  - envs
+  - env
+  - venv
+  - .venv
+  - miniconda3
+  - anaconda3
+  - lib
+  - lib64
+  - include
+  - share
+  - bin
+  - man
+  - .Trash
+  - toppar
+  - vendor
+  - vendored
+  - third_party
+  - thirdparty
+  - external
+  - exampleData
+  - example_data
+  - examples
+  - sample_data
+  - sampledata
+  - example-output
+  - example_output
+  - exampleOutput
+  - test_data
+  - testdata
+  - tests
+  - testing
+  - demo
+  - demos
+  - MDDB_substrate
+  - MDDB_substrate_toolkit
+  - SUBSTRATE_PIPELINE
+  - LAB_GLOSSARY
+  min_table_bytes: 50000
+  deep_scan: false
+  write_in_place: false
+
+  # --- what each trajectory file really is --------------------------------------
+  # Confirms the `stage_assumed` warning rather than leaving it open: these five
+  # DCDs ARE the production simulation. strip_closed_full.sh reads them as "the
+  # CLOSED-state production trajectories" and GLOBAL_3STATE/config3.py files them
+  # as state CLOSED's production data. Everything under STRIP_FULL/ and
+  # SASA-384-401-exact/stripped/ is a membrane-stripped derivative of them
+  # (55,632 atoms vs 256,522) and the pipeline already classifies those correctly.
+  stages:
+    production: 'base_model\..*\.R[0-9]+\.dcd$'
+
+  # --- what each run IS (optional) --------------------------------------------
+  # `system` and `condition` are `unknown` for every run until you say what your
+  # paths mean. Nothing is ever guessed: a label appears only where a rule you
+  # wrote matches. Uncomment and edit.
+  #
+  # Matched case-insensitively against each run's path relative to `root`, so a
+  # rule can key on a parent directory -- which is usually where the system lives.
+  # The FIRST declared match wins, so put specific rules above general ones.
+  #
+  # systems:
+  #   gp120-open:   ["3-OCCLUDED-OPEN", "4-OPEN"]   # one label, several patterns
+  #   gp120-deglyc: "2-NO-GLYC"
+  #
+  # conditions:
+  #   apo:  "/apo(/|$)"
+  #   holo: "/holo(/|$)"
+  #
+  # When the directory NAME is the thing simulated -- one folder per sequence,
+  # say -- take the label from the path instead of writing one rule per folder.
+  # The capture group becomes the label, used verbatim:
+  #
+  # systems_from:
+  #   - "GENTILE/[0-9]+-([ACGUT]{6})"     # 10-TGGGGC -> TGGGGC
+  #
+  # An explicit `systems:` entry beats a captured one, which is how you correct a
+  # single directory whose name lies. A pattern that cannot compile stops the
+  # build and names itself, rather than silently labelling nothing.
+  #
+  # After editing, re-run substrate_build.py and check it took:
+  #   python3 .../ask.py sql "SELECT system, COUNT(*) FROM runs GROUP BY system"
+
+# --- how long a full production MD is here -----------------------------------
+# An MD that reaches one of these lengths (2 % tolerance) is a production MD of
+# that length; one shorter than all of them is flagged `short_of_nominal` and
+# left out of the NDP records. A dataset can declare its own list.
+
+production_lengths_ns: [500, 1000, 1500]
+
+datasets:
+  # ---------------------------------------------------------------------
+  # MDs: 1 production runs, 161.6 GB, sampling not readable from headers, replicas unnamed
+  # ---------------------------------------------------------------------
+  - id: MDs
+    paths:
+      - .
+    name: MDs
+    description: "Molecular dynamics dataset 'MDs'." 
+    # The authors of the paper these five replicas were published in, in its
+    # order. Filled 2026-09-25 from the article itself; see `citation:` below.
+    authors:
+      - Mohamed Shehata
+      - Lorenzo Casalino
+      - Madeleine Duquette
+      - Siyu Chen
+      - Alex Flaherty
+      - Patrick M. Waller
+      - Elizabeth Villa
+      - Rommie E. Amaro
+    contact: maalbani@ucsd.edu
+    type: trajectory        # trajectory | ensemble
+    method: Classical MD
+    license: Creative Commons Attribution 4.0 International
+    linkcense: https://creativecommons.org/licenses/by/4.0/
+    citation: "Shehata, M., Casalino, L., Duquette, M., Chen, S., Flaherty, A., Waller, P. M., Villa, E. & Amaro, R. E. N-Glycans modulate tilting of HIV-1 envelope glycoprotein. Nature Communications 17, 5206 (2026). https://doi.org/10.1038/s41467-026-71874-2"
+    thanks: 
+    collections: 
+    groups:                 # author group, e.g. Amaro Lab
+    # The entries the starting model was built FROM. Not one structure:
+    # 5T3Z is the BG505 SOSIP.664 ectodomain crystal structure, 7LOI the
+    # clade D MPER-TMD-CT NMR structure used as a homology template, and
+    # 4G6F the MPER crystal structure the finished model was checked
+    # against. See `starting_structure` under this dataset's system.
+    pdb_ids: [5T3Z, 7LOI, 4G6F]
+    forced_references: []   # UniProt; 'noref' for constructs
+    ligands: []             # {pubchem: 1986} etc.
+    wat: TIP3P              # water model - AMBER only; set by hand for NAMD
+    multimeric:             # monomer | dimer | trimer ...
+    interactions: []        # {name, agent_1, selection_1, ...}
+    pbc_selection: auto     # verify for membrane systems
+
+ndp:
+  defaults:
+    lab: "Amaro Lab, UC San Diego"
+    data_availability: "Trajectories stored on lab storage; available on request"
+    keywords: [molecular dynamics, Amaro Lab]
+    base_url:    # where records/ is hosted, e.g. https://raw.githubusercontent.com/<org>/<repo>/main/records
+
+  datasets:
+    MDs:
+      # Filled 2026-09-25 from the paper these trajectories were published in
+      # (https://doi.org/10.1038/s41467-026-71874-2), Methods, "System preparation":
+      # "solvated with TIP3P explicit water model in a box, ensuring a minimum
+      #  distance of 24 A between the protein and the box edges. Na+ and Cl-
+      #  ions were added at a concentration of 150 mM to neutralize the charge".
+      # The water and ions are NOT in these five DCDs -- they were stripped by
+      # the post-processing that produced them (256,522 atoms: protein, glycans
+      # and lipids). They are recorded because they describe the simulation,
+      # not the file.
+      # From the paper, Methods, "Glycosylation". VERIFIED against the
+      # topology rather than taken on the paper's word: this build carries
+      # segids GA1-GA23, GB1-GB23 and GC1-GC23, which is 23 glycans on each
+      # of the three protomers, exactly the 23 sites the paper states.
+      glycan_profile: "Heterogeneous, site-specific profile derived from
+        glycoanalytic data for clade A BG505 viral Env: 23 N-linked sites
+        glycosylated per monomer, not uniform across protomers. N185e, N185h,
+        N618 and N625 are left unoccupied, as they have no consistent evidence
+        of occupancy in clade A BG505. Glycans were built with Glycan Reader &
+        Modeler in CHARMM-GUI, preserving the GlcNAc / GlcNAc2 / ManGlcNAc2
+        cores resolved in the cryo-EM structures as a scaffold where feasible.
+        Per-chain detail: Supplementary Tables 1-3 of the related publication."
+      ions: 150 mM NaCl
+      water_model: TIP3P
+      related_publication: https://doi.org/10.1038/s41467-026-71874-2
+      keywords: []
+
+  systems:
+
+    # ----------------------------------------------------------------------
+    # MDs/70c12cdf: 5 MD(s), 256,522 atoms, length unknown, program unknown
+    #   md_R1  (.)
+    #   md_R2  (.)
+    #   md_R3  (.)
+    #   md_R4  (.)
+    #   md_R5  (.)
+    # ----------------------------------------------------------------------
+    - id: MDs/70c12cdf
+      topic: hiv
+      # CONFIRMED by the owner, 2026-09-24. Follows the sibling records' pattern
+      # (`HIV - Env Occluded Open - 3 µs`, `HIV - Env Open State - Tribound 1F4
+      # antibody`). "Closed State" because this IS the closed prefusion trimer:
+      # GLOBAL_3STATE/config3.py files these five replicas under state CLOSED,
+      # and strip_closed_full.sh calls them "the CLOSED-state production
+      # trajectories". 5.25 us is the total, as the occluded-open record's
+      # "3 us" is its total (3 x 1008 ns).
+      title: HIV - Env Closed State - Full-Length Membrane-Embedded - 5.25 µs
+      # --- what was built, from the paper's "Modeling of the full-length
+      # HIV-1 Env glycoprotein" and "Glycosylation" sections -----------------
+      construct: "Full-length HIV-1 clade A BG505 Env trimer (gp160), three
+        protomers, glycosylated and palmitoylated, embedded in an asymmetric
+        lipid bilayer mimicking the composition of the viral budding site.
+        Ectodomain HXB2 residues 31-662, with the SOSIP mutations and the furin
+        cleavage site reverted to the native clade A sequence (UniProt Q2N0S6);
+        MPER, transmembrane domain and cytoplasmic tail included; the two
+        cytoplasmic-tail cysteines C764 and C837 palmitoylated."
+
+      # NOT one PDB entry, which is why this is a sentence and not an id. The
+      # record would otherwise say "PDB 5T3Z" and describe only the ectodomain.
+      starting_structure: "Composite model. Ectodomain built on the BG505
+        SOSIP.664 crystal structure (PDB 5T3Z, 3.5 A), with the missing gaps
+        modelled as disordered loops in Modeller 10.3. MPER-TMD-CT built by
+        i-TASSER homology modelling on the clade D NMR structure PDB 7LOI,
+        carrying the clade A sequence. The two halves were joined through the
+        HR2 helix (residues 637-668) re-modelled with AlphaFold2, and the
+        junction relaxed with autoIMD in VMD. The finished MPER was checked
+        against the crystal structure PDB 4G6F."
+
+      glycan_profile:
+      ions:
+
+      # --- setup, from the paper ---------------------------------------------
+      # None of these could be measured: this folder holds no NAMD config and
+      # no log (the build predates the project by ~2 years; SECOND_BRAIN/
+      # 03-METHODS.md records its provenance as unknown). They are read from
+      # the paper these five replicas were published in, https://doi.org/10.1038/s41467-026-71874-2,
+      # Methods, "System preparation" and "Molecular dynamics (MD) simulations":
+      #
+      #   "parameterized using psfgen and the CHARMM36m all-atom additive force
+      #    fields for proteins, lipids, and glycans"
+      #   "All-atom MD simulations were performed ... using NAMD3"
+      #   "Five replicates of NPT production MD simulations with semi-isotropic
+      #    pressure coupling were performed for 1.05 us" -- which is exactly the
+      #    5 x 1050 ns this record measures, and is why this paper is this
+      #    dataset's, not a neighbouring system's.
+      #   "an integration time step of 2 fs, utilizing the SHAKE algorithm"
+      #   "a Langevin thermostat (310 K) and a Nose-Hoover Langevin barostat
+      #    (1.01325 bar) as implemented in NAMD3"
+      #
+      # Production is NPT with SEMI-ISOTROPIC pressure coupling (useFlexibleCell
+      # yes, useConstantArea yes), as a membrane system must be; the record's
+      # `ensemble` field holds the ensemble alone.
+      force_field: CHARMM36m
+      water_model:
+      software: NAMD3
+      ensemble: NPT
+      temperature_K: 310
+      pressure_bar: 1.01325
+      timestep_fs: 2
+
+      # --- DECLARED frame spacing --------------------------------------------
+      # These five DCDs were written by post-processing and their headers say
+      # nsavc=1, so no length can be measured from them. 100 ps is not a guess;
+      # six places in this project state it, all written by the owner:
+      #
+      #  1. GLOBAL_3STATE/config3.py, the three-state table:
+      #       state    replicas  ns each  ns/frame  solute atoms  environment
+      #       CLOSED      5        1050     0.1*      55,632      LIPID BILAYER
+      #     "* 0.1 ns after STRIP_FULL/; the older SASA-384-401-exact/stripped/
+      #      copies are stride-10 (1 ns)."
+      #  2. GLOBAL_3STATE/config3.py `_closed_traj()` returns dt = 0.1 for the
+      #     10,500-frame STRIP_FULL file and dt = 1.0 for the stride-10 copy.
+      #  3. GLOBAL_3STATE/RESULTS.yaml, committed: CLOSED ns_per_frame: 0.1
+      #  4. SASA-384-401-exact/sasa_closed_md.py:38
+      #       DT_NS = 1.0   # stripped at stride 10 of 0.1 ns frames
+      #  5. SASA-384-401-exact/{strip_membrane.tcl,run_all_closed.sh}: stride 10
+      #     of these DCDs gives "1050 frames (1 ns stride)" -> 10 x 0.1 ns.
+      #  6. strip_closed_full.sh header: the stride-10 copies are "1,050 frames
+      #     at 1.0 ns"; at stride 1 the common density "becomes 0.2 ns (set by
+      #     OPEN)", i.e. CLOSED at stride 1 is finer than 0.2 ns.
+      #
+      # 10,500 frames x 100 ps = 1050 ns = 1.05 us per replica, 5.25 us total.
+      # The original NAMD .conf is NOT in this tree (SECOND_BRAIN/03-METHODS.md
+      # records the closed build's provenance as unknown, predating the project
+      # by ~2 years), which is why this is declared rather than measured.
+      frame_interval_ps: 100
+
+      related_publication:
+      keywords: []
+      slug:

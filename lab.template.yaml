@@ -1,0 +1,81 @@
+# lab.yaml -- everything in this kit that belongs to one lab.
+#
+# Edit THIS FILE and nothing else to use the pipeline in your lab. The code
+# holds no lab names, identifiers, topics, people or licences of its own: a
+# value left empty here is simply empty, and records stay `incomplete` until a
+# person supplies it. `examples/lab.yaml` is a filled-in example.
+#
+# Read by NDP_PIPELINE (and its copy in MDDB_PIPELINE), MD_COLLECT and
+# MDDB_PIPELINE/install_mwf.sh. Point MD_PIPELINE_LAB at another file to use
+# that one instead (one kit, several labs). `python3 NDP_PIPELINE/core/lab.py`
+# prints what is in force.
+#
+# Precedence, lowest to highest: this file < `ndp: defaults:` in a folder's
+# settings.yaml < that file's `datasets:` block < `ndp: datasets:` < one system.
+# A key left empty at any level falls through to the level below.
+
+lab:
+  name:                               # e.g. "Smith Lab, Example University": `lab:` in every record, the publisher in the standard formats
+  short_name:                         # e.g. "Smith Lab": collection titles, hints
+  url:                                # the lab's web site
+  catalog_name:                       # e.g. "Smith Lab data catalog"
+  catalog_url:                        # where the lab lists its datasets
+  ndp_organization:                   # the publisher on NDP once it lists one; empty = "Individual"
+
+identifiers:
+  # First word of every suggested identifier: SMITHLAB-HIV-ENV-001.
+  # The NDP_ID_PREFIX environment variable still overrides it.
+  prefix: LAB
+
+# What any record falls back to when a folder leaves a key empty.
+record_defaults:
+  keywords: [molecular dynamics]
+  data_availability: "Trajectories stored on lab storage; available on request"
+  # Who owns the data: the PI accountable for it. Only `name` is required.
+  data_owner:
+    name:
+    email:
+    orcid:
+    affiliation:
+  # Who may get the raw files: public | private | licensable.
+  # Leave empty to make every record wait for a person's decision.
+  access_level:
+  # May the data be used to TRAIN AI/ML models? Separate from the citation
+  # licence (CC-BY says nothing about it): allowed | prohibited | by-agreement.
+  ai_training:
+  # Where the raw files live. `path` is measured for every record; these name
+  # the storage it is on and, when there is one, a URL to fetch it from
+  # (Globus, https, s3).
+  data_location:
+    storage:                          # e.g. "Smith Lab cluster storage, Example University"
+    uri:
+
+# Attribution and licence are decisions a PERSON takes for THEIR data, so they
+# are pre-filled into new `datasets:` blocks only for the accounts listed here
+# (the folder's owner on disk, or `folder: owner:`). Everyone else gets the
+# keys empty.
+people: {}
+#  jsmith:                            # a Unix account name
+#    authors: [Jo Smith, Pat Investigator]
+#    contact: jsmith@example.edu
+#    license: Creative Commons Attribution 4.0 International
+#    license_url: https://creativecommons.org/licenses/by/4.0/
+
+# The catalogue's research topics. For each topic slug:
+#   code      the topic segment of an identifier (<PREFIX>-<code>-...)
+#   molecule  what a suggested title names when the topic is a pathogen
+#   words     folder or topic words that file a dataset under it
+topics: {}
+#  hiv:      {code: HIV, molecule: Env, words: [hiv, gp120, gp41, bg505]}
+#  covid-19: {code: COV2, molecule: Spike, words: [covid, sars, spike]}
+
+# Research areas init.py proposes from directory names, before any record
+# exists (regexes, matched case-insensitively; single quotes).
+index_topics: {}
+#  HIV-1: ['\bhiv\b', 'gp120', 'gp41']
+#  SARS-CoV-2: ['sars', 'cov-?2', '\bspike\b']
+
+storage:
+  # The lab's data tree. install_mwf.sh refuses to install into it: a new
+  # top-level directory there is picked up by the index as unexplained content.
+  data_roots: []                      # e.g. [/data/smithlab]

@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "#1-FULL-GP120_5-replicas",
+  "@type": [
+    "Dataset",
+    "dcat:Dataset"
+  ],
+  "identifier": "AMARO-HIV-MDS-001",
+  "name": "HIV - Env Closed State - Full-Length Membrane-Embedded - 5.25 µs",
+  "description": "Molecular dynamics simulations of Full-length HIV-1 clade A BG505 Env trimer (gp160), three protomers, glycosylated and palmitoylated, embedded in an asymmetric lipid bilayer mimicking the composition of the viral budding site. Ectodomain HXB2 residues 31-662, with the SOSIP mutations and the furin cleavage site reverted to the native clade A sequence (UniProt Q2N0S6); MPER, transmembrane domain and cytoplasmic tail included; the two cytoplasmic-tail cysteines C764 and C837 palmitoylated. (256,522 atoms). Starting structure: Composite model. Ectodomain built on the BG505 SOSIP.664 crystal structure (PDB 5T3Z, 3.5 A), with the missing gaps modelled as disordered loops in Modeller 10.3. MPER-TMD-CT built by i-TASSER homology modelling on the clade D NMR structure PDB 7LOI, carrying the clade A sequence. The two halves were joined through the HR2 helix (residues 637-668) re-modelled with AlphaFold2, and the junction relaxed with autoIMD in VMD. The finished MPER was checked against the crystal structure PDB 4G6F.. Glycan profile: Heterogeneous, site-specific profile derived from glycoanalytic data for clade A BG505 viral Env: 23 N-linked sites glycosylated per monomer, not uniform across protomers. N185e, N185h, N618 and N625 are left unoccupied, as they have no consistent evidence of occupancy in clade A BG505. Glycans were built with Glycan Reader & Modeler in CHARMM-GUI, preserving the GlcNAc / GlcNAc2 / ManGlcNAc2 cores resolved in the cryo-EM structures as a scaffold where feasible. Per-chain detail: Supplementary Tables 1-3 of the related publication.. Setup: TIP3P water, 150 mM NaCl. Sampling: 5 × 1050 ns, one frame every 100 ps. Related publication: https://doi.org/10.1038/s41467-026-71874-2. This entry is metadata only. Trajectories stored on lab storage; available on request. Contact: maalbani@ucsd.edu.",
+  "keywords": [
+    "molecular dynamics",
+    "Amaro Lab"
+  ],
+  "about": {
+    "@type": "DefinedTerm",
+    "name": "hiv"
+  },
+  "measurementTechnique": "Molecular dynamics simulation",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Mohamed Shehata"
+    },
+    {
+      "@type": "Person",
+      "name": "Lorenzo Casalino"
+    },
+    {
+      "@type": "Person",
+      "name": "Madeleine Duquette"
+    },
+    {
+      "@type": "Person",
+      "name": "Siyu Chen"
+    },
+    {
+      "@type": "Person",
+      "name": "Alex Flaherty"
+    },
+    {
+      "@type": "Person",
+      "name": "Patrick M. Waller"
+    },
+    {
+      "@type": "Person",
+      "name": "Elizabeth Villa"
+    },
+    {
+      "@type": "Person",
+      "name": "Rommie E. Amaro"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Amaro Lab, UC San Diego"
+  },
+  "accountablePerson": {
+    "@type": "Person",
+    "name": "Rommie E. Amaro",
+    "email": "ramaro@ucsd.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "UC San Diego"
+    }
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "maalbani@ucsd.edu",
+    "contactType": "data requests"
+  },
+  "license": "https://spdx.org/licenses/CC-BY-4.0",
+  "citation": "https://doi.org/10.1038/s41467-026-71874-2",
+  "usageInfo": {
+    "@type": "CreativeWork",
+    "name": "AI/ML training",
+    "text": "Use of this data to train AI/ML models requires the data owner's agreement."
+  },
+  "contentSize": "161.62 GB",
+  "dateCreated": "2026-09-22",
+  "dateModified": "2026-10-01",
+  "isPartOf": {
+    "@type": "DataCatalog",
+    "name": "Amaro Lab data catalog",
+    "url": "https://amarolab.ucsd.edu/data-catalog/"
+  },
+  "distribution": [
+    {
+      "@id": "#1-FULL-GP120_5-replicas-record",
+      "@type": [
+        "DataDownload",
+        "dcat:Distribution"
+      ],
+      "name": "MD metadata record (JSON)",
+      "dct:title": "MD metadata record (JSON)",
+      "encodingFormat": "application/json",
+      "dcat:mediaType": "application/json"
+    },
+    {
+      "@id": "#1-FULL-GP120_5-replicas-raw",
+      "@type": [
+        "DataDownload",
+        "dcat:Distribution"
+      ],
+      "name": "Raw trajectories",
+      "dct:title": "Raw trajectories",
+      "description": "Raw trajectory files (5 files) on Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs. Trajectories stored on lab storage; available on request.",
+      "dct:description": "Raw trajectory files (5 files) on Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs. Trajectories stored on lab storage; available on request.",
+      "contentSize": "161.62 GB",
+      "dcat:byteSize": {
+        "@value": "161620000000",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    }
+  ],
+  "dct:identifier": "AMARO-HIV-MDS-001",
+  "dct:title": "HIV - Env Closed State - Full-Length Membrane-Embedded - 5.25 µs",
+  "dct:description": "Molecular dynamics simulations of Full-length HIV-1 clade A BG505 Env trimer (gp160), three protomers, glycosylated and palmitoylated, embedded in an asymmetric lipid bilayer mimicking the composition of the viral budding site. Ectodomain HXB2 residues 31-662, with the SOSIP mutations and the furin cleavage site reverted to the native clade A sequence (UniProt Q2N0S6); MPER, transmembrane domain and cytoplasmic tail included; the two cytoplasmic-tail cysteines C764 and C837 palmitoylated. (256,522 atoms). Starting structure: Composite model. Ectodomain built on the BG505 SOSIP.664 crystal structure (PDB 5T3Z, 3.5 A), with the missing gaps modelled as disordered loops in Modeller 10.3. MPER-TMD-CT built by i-TASSER homology modelling on the clade D NMR structure PDB 7LOI, carrying the clade A sequence. The two halves were joined through the HR2 helix (residues 637-668) re-modelled with AlphaFold2, and the junction relaxed with autoIMD in VMD. The finished MPER was checked against the crystal structure PDB 4G6F.. Glycan profile: Heterogeneous, site-specific profile derived from glycoanalytic data for clade A BG505 viral Env: 23 N-linked sites glycosylated per monomer, not uniform across protomers. N185e, N185h, N618 and N625 are left unoccupied, as they have no consistent evidence of occupancy in clade A BG505. Glycans were built with Glycan Reader & Modeler in CHARMM-GUI, preserving the GlcNAc / GlcNAc2 / ManGlcNAc2 cores resolved in the cryo-EM structures as a scaffold where feasible. Per-chain detail: Supplementary Tables 1-3 of the related publication.. Setup: TIP3P water, 150 mM NaCl. Sampling: 5 × 1050 ns, one frame every 100 ps. Related publication: https://doi.org/10.1038/s41467-026-71874-2. This entry is metadata only. Trajectories stored on lab storage; available on request. Contact: maalbani@ucsd.edu.",
+  "dcat:keyword": [
+    "molecular dynamics",
+    "Amaro Lab"
+  ],
+  "dct:creator": [
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Mohamed Shehata"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Lorenzo Casalino"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Madeleine Duquette"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Siyu Chen"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Alex Flaherty"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Patrick M. Waller"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Elizabeth Villa"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Rommie E. Amaro"
+    }
+  ],
+  "dct:publisher": {
+    "@type": "foaf:Organization",
+    "foaf:name": "Amaro Lab, UC San Diego"
+  },
+  "dct:rightsHolder": {
+    "@type": "foaf:Person",
+    "foaf:name": "Rommie E. Amaro",
+    "foaf:mbox": {
+      "@id": "mailto:ramaro@ucsd.edu"
+    }
+  },
+  "dcat:contactPoint": {
+    "@type": "vcard:Kind",
+    "vcard:fn": "Rommie E. Amaro",
+    "vcard:hasEmail": {
+      "@id": "mailto:maalbani@ucsd.edu"
+    }
+  },
+  "dct:license": {
+    "@id": "https://spdx.org/licenses/CC-BY-4.0"
+  },
+  "dct:bibliographicCitation": "https://doi.org/10.1038/s41467-026-71874-2",
+  "dct:issued": {
+    "@value": "2026-09-22",
+    "@type": "xsd:date"
+  },
+  "dct:modified": {
+    "@value": "2026-10-01",
+    "@type": "xsd:date"
+  },
+  "dcat:distribution": [
+    {
+      "@id": "#1-FULL-GP120_5-replicas-record"
+    },
+    {
+      "@id": "#1-FULL-GP120_5-replicas-raw"
+    }
+  ],
+  "odrl:hasPolicy": {
+    "@id": "#1-FULL-GP120_5-replicas-ai-training-policy",
+    "@type": "odrl:Set",
+    "odrl:uid": {
+      "@id": "#1-FULL-GP120_5-replicas-ai-training-policy"
+    },
+    "odrl:permission": [
+      {
+        "odrl:action": {
+          "@id": "odrl:use"
+        },
+        "odrl:target": {
+          "@id": "#1-FULL-GP120_5-replicas"
+        },
+        "odrl:constraint": {
+          "odrl:leftOperand": {
+            "@id": "odrl:purpose"
+          },
+          "odrl:operator": {
+            "@id": "odrl:eq"
+          },
+          "odrl:rightOperand": "AI model training"
+        },
+        "odrl:duty": {
+          "odrl:action": {
+            "@id": "odrl:obtainConsent"
+          }
+        }
+      }
+    ]
+  }
+}

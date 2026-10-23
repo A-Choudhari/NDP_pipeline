@@ -1,0 +1,276 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "#spike-fulllength-open_6x703.7ns",
+  "@type": [
+    "Dataset",
+    "dcat:Dataset"
+  ],
+  "identifier": "AMARO-SARSCOV2-SPIKE-OPEN",
+  "name": "SARS-CoV-2 full-length spike glycoprotein, open state: all-atom MD",
+  "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+  "keywords": [
+    "molecular dynamics",
+    "Amaro Lab",
+    "SARS-CoV-2",
+    "spike glycoprotein",
+    "glycan shield",
+    "NAMD",
+    "CHARMM36"
+  ],
+  "about": {
+    "@type": "DefinedTerm",
+    "name": "covid-19"
+  },
+  "measurementTechnique": "Molecular dynamics simulation",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Lorenzo Casalino"
+    },
+    {
+      "@type": "Person",
+      "name": "Zied Gaieb"
+    },
+    {
+      "@type": "Person",
+      "name": "Jory A. Goldsmith"
+    },
+    {
+      "@type": "Person",
+      "name": "Christy K. Hjorth"
+    },
+    {
+      "@type": "Person",
+      "name": "Abigail C. Dommer"
+    },
+    {
+      "@type": "Person",
+      "name": "Aoife M. Harbison"
+    },
+    {
+      "@type": "Person",
+      "name": "Carl A. Fogarty"
+    },
+    {
+      "@type": "Person",
+      "name": "Emilia P. Barros"
+    },
+    {
+      "@type": "Person",
+      "name": "Bryn C. Taylor"
+    },
+    {
+      "@type": "Person",
+      "name": "Jason S. McLellan"
+    },
+    {
+      "@type": "Person",
+      "name": "Elisa Fadda"
+    },
+    {
+      "@type": "Person",
+      "name": "Rommie E. Amaro"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Amaro Lab, UC San Diego"
+  },
+  "accountablePerson": {
+    "@type": "Person",
+    "name": "Rommie E. Amaro",
+    "email": "ramaro@ucsd.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "UC San Diego"
+    }
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "ramaro@ucsd.edu",
+    "contactType": "data requests"
+  },
+  "license": "https://spdx.org/licenses/CC-BY-4.0",
+  "citation": "https://doi.org/10.1021/acscentsci.0c01056",
+  "usageInfo": {
+    "@type": "CreativeWork",
+    "name": "AI/ML training",
+    "text": "Use of this data to train AI/ML models requires the data owner's agreement."
+  },
+  "contentSize": "36.87 GB",
+  "dateCreated": "2026-09-29",
+  "dateModified": "2026-10-01",
+  "isPartOf": {
+    "@type": "DataCatalog",
+    "name": "Amaro Lab data catalog",
+    "url": "https://amarolab.ucsd.edu/data-catalog/"
+  },
+  "distribution": [
+    {
+      "@id": "#spike-fulllength-open_6x703.7ns-record",
+      "@type": [
+        "DataDownload",
+        "dcat:Distribution"
+      ],
+      "name": "MD metadata record (JSON)",
+      "dct:title": "MD metadata record (JSON)",
+      "encodingFormat": "application/json",
+      "dcat:mediaType": "application/json"
+    },
+    {
+      "@id": "#spike-fulllength-open_6x703.7ns-raw",
+      "@type": [
+        "DataDownload",
+        "dcat:Distribution"
+      ],
+      "name": "Raw trajectories",
+      "dct:title": "Raw trajectories",
+      "description": "Raw trajectory files (6 files) on Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN. Trajectories stored on lab storage; available on request.",
+      "dct:description": "Raw trajectory files (6 files) on Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/OPEN. Trajectories stored on lab storage; available on request.",
+      "contentSize": "36.87 GB",
+      "dcat:byteSize": {
+        "@value": "36870000000",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    }
+  ],
+  "dct:identifier": "AMARO-SARSCOV2-SPIKE-OPEN",
+  "dct:title": "SARS-CoV-2 full-length spike glycoprotein, open state: all-atom MD",
+  "dct:description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+  "dcat:keyword": [
+    "molecular dynamics",
+    "Amaro Lab",
+    "SARS-CoV-2",
+    "spike glycoprotein",
+    "glycan shield",
+    "NAMD",
+    "CHARMM36"
+  ],
+  "dct:creator": [
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Lorenzo Casalino"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Zied Gaieb"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Jory A. Goldsmith"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Christy K. Hjorth"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Abigail C. Dommer"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Aoife M. Harbison"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Carl A. Fogarty"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Emilia P. Barros"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Bryn C. Taylor"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Jason S. McLellan"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Elisa Fadda"
+    },
+    {
+      "@type": "foaf:Person",
+      "foaf:name": "Rommie E. Amaro"
+    }
+  ],
+  "dct:publisher": {
+    "@type": "foaf:Organization",
+    "foaf:name": "Amaro Lab, UC San Diego"
+  },
+  "dct:rightsHolder": {
+    "@type": "foaf:Person",
+    "foaf:name": "Rommie E. Amaro",
+    "foaf:mbox": {
+      "@id": "mailto:ramaro@ucsd.edu"
+    }
+  },
+  "dcat:contactPoint": {
+    "@type": "vcard:Kind",
+    "vcard:fn": "Rommie E. Amaro",
+    "vcard:hasEmail": {
+      "@id": "mailto:ramaro@ucsd.edu"
+    }
+  },
+  "dct:license": {
+    "@id": "https://spdx.org/licenses/CC-BY-4.0"
+  },
+  "dct:bibliographicCitation": "https://doi.org/10.1021/acscentsci.0c01056",
+  "dct:issued": {
+    "@value": "2026-09-29",
+    "@type": "xsd:date"
+  },
+  "dct:modified": {
+    "@value": "2026-10-01",
+    "@type": "xsd:date"
+  },
+  "dcat:distribution": [
+    {
+      "@id": "#spike-fulllength-open_6x703.7ns-record"
+    },
+    {
+      "@id": "#spike-fulllength-open_6x703.7ns-raw"
+    }
+  ],
+  "odrl:hasPolicy": {
+    "@id": "#spike-fulllength-open_6x703.7ns-ai-training-policy",
+    "@type": "odrl:Set",
+    "odrl:uid": {
+      "@id": "#spike-fulllength-open_6x703.7ns-ai-training-policy"
+    },
+    "odrl:permission": [
+      {
+        "odrl:action": {
+          "@id": "odrl:use"
+        },
+        "odrl:target": {
+          "@id": "#spike-fulllength-open_6x703.7ns"
+        },
+        "odrl:constraint": {
+          "odrl:leftOperand": {
+            "@id": "odrl:purpose"
+          },
+          "odrl:operator": {
+            "@id": "odrl:eq"
+          },
+          "odrl:rightOperand": "AI model training"
+        },
+        "odrl:duty": {
+          "odrl:action": {
+            "@id": "odrl:obtainConsent"
+          }
+        }
+      }
+    ]
+  }
+}

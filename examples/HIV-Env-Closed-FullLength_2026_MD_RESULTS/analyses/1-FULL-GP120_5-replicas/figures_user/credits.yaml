@@ -1,0 +1,20 @@
+# Pictures supplied by the person who ran the system. These two were handed
+# over directly in <folder>/PICTURES/ rather than extracted from a deck, so
+# there is no slide number or shared legend to record; `from:` is the file
+# they were copied from, which is what a figure has to be traceable to.
+# Captions written 2026-09-24 from looking at the images themselves.
+images:
+  - file: closed-trimer-membrane-side-view.png
+    from: PICTURES/full_length_glyco_membrane_cysp.png
+    title: "FULL-LENGTH GLYCOSYLATED ENV IN THE MEMBRANE"
+    caption: "Side view, bilayer edge-on: the full-length Env trimer with its N-glycans space-filling in SNFG colours over a translucent protein surface, the transmembrane helices crossing the bilayer, and the cytoplasmic domain below it"
+    order: 0
+    state_in_title: closed
+    records_state: closed
+  - file: closed-trimer-membrane-tilted-view.png
+    from: PICTURES/full_length_glyco_membrane_cysp_rotated_dof.png
+    title: "FULL-LENGTH GLYCOSYLATED ENV IN THE MEMBRANE"
+    caption: "The same system rotated to look down across the bilayer patch, rendered with depth of field: the lipids recede in and out of focus while the glycan shield over the trimer stays sharp"
+    order: 1
+    state_in_title: closed
+    records_state: closed

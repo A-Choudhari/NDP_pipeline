@@ -1,0 +1,80 @@
+{
+  "catalog": "Amaro Lab data catalog",
+  "generated": "2026-10-01T14:40:19",
+  "folder": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION",
+  "base_url": null,
+  "datasets": [
+    {
+      "identifier": "AMARO-SARSCOV2-SPIKE-CLOSED",
+      "topic": "covid-19",
+      "tags": [
+        "spike",
+        "closed-state",
+        "glycans",
+        "SARS-CoV-2"
+      ],
+      "title": "SARS-CoV-2 full-length spike glycoprotein, closed state: all-atom MD",
+      "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the closed state (all RBDs 'down'), protein + glycans only (not aligned). PSF and DCD files are provided. 3 replicas.",
+      "size_gb": 15.12,
+      "files": 3,
+      "replicas": 3,
+      "complete_replicas": 3,
+      "total_ns": 1731.4,
+      "record": "spike-fulllength-closed_3x500ns.json",
+      "data_availability": "Trajectories stored on lab storage; available on request",
+      "license": "CC-BY-4.0",
+      "data_owner": "Rommie E. Amaro",
+      "access_level": null,
+      "ai_training": "by-agreement"
+    },
+    {
+      "identifier": "AMARO-SARSCOV2-SPIKE-N165A_N234A_MUTANT",
+      "topic": "covid-19",
+      "tags": [
+        "spike",
+        "open-state",
+        "glycans",
+        "glycan-deletion",
+        "N165A",
+        "N234A",
+        "SARS-CoV-2"
+      ],
+      "title": "SARS-CoV-2 full-length spike glycoprotein, open state, N165A/N234A: all-atom MD",
+      "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions, protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+      "size_gb": 36.72,
+      "files": 6,
+      "replicas": 6,
+      "complete_replicas": 6,
+      "total_ns": 4291.2,
+      "record": "spike-fulllength-open-N165A-N234A_6x715.2ns.json",
+      "data_availability": "Trajectories stored on lab storage; available on request",
+      "license": "CC-BY-4.0",
+      "data_owner": "Rommie E. Amaro",
+      "access_level": null,
+      "ai_training": "by-agreement"
+    },
+    {
+      "identifier": "AMARO-SARSCOV2-SPIKE-OPEN",
+      "topic": "covid-19",
+      "tags": [
+        "spike",
+        "open-state",
+        "glycans",
+        "SARS-CoV-2"
+      ],
+      "title": "SARS-CoV-2 full-length spike glycoprotein, open state: all-atom MD",
+      "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up'), protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+      "size_gb": 36.87,
+      "files": 6,
+      "replicas": 6,
+      "complete_replicas": 6,
+      "total_ns": 4222.2,
+      "record": "spike-fulllength-open_6x703.7ns.json",
+      "data_availability": "Trajectories stored on lab storage; available on request",
+      "license": "CC-BY-4.0",
+      "data_owner": "Rommie E. Amaro",
+      "access_level": null,
+      "ai_training": "by-agreement"
+    }
+  ]
+}

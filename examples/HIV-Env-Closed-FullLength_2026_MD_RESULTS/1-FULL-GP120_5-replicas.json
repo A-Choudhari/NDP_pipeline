@@ -1,0 +1,128 @@
+{
+  "identifier": "AMARO-HIV-MDS-001",
+  "topic": "hiv",
+  "tags": [
+    "Full",
+    "length",
+    "HIV",
+    "Env",
+    "Closed",
+    "5.2 us"
+  ],
+  "title": "HIV - Env Closed State - Full-Length Membrane-Embedded - 5.25 µs",
+  "description": "Molecular dynamics simulations of Full-length HIV-1 clade A BG505 Env trimer (gp160), three protomers, glycosylated and palmitoylated, embedded in an asymmetric lipid bilayer mimicking the composition of the viral budding site. Ectodomain HXB2 residues 31-662, with the SOSIP mutations and the furin cleavage site reverted to the native clade A sequence (UniProt Q2N0S6); MPER, transmembrane domain and cytoplasmic tail included; the two cytoplasmic-tail cysteines C764 and C837 palmitoylated. (256,522 atoms). Starting structure: Composite model. Ectodomain built on the BG505 SOSIP.664 crystal structure (PDB 5T3Z, 3.5 A), with the missing gaps modelled as disordered loops in Modeller 10.3. MPER-TMD-CT built by i-TASSER homology modelling on the clade D NMR structure PDB 7LOI, carrying the clade A sequence. The two halves were joined through the HR2 helix (residues 637-668) re-modelled with AlphaFold2, and the junction relaxed with autoIMD in VMD. The finished MPER was checked against the crystal structure PDB 4G6F.. Glycan profile: Heterogeneous, site-specific profile derived from glycoanalytic data for clade A BG505 viral Env: 23 N-linked sites glycosylated per monomer, not uniform across protomers. N185e, N185h, N618 and N625 are left unoccupied, as they have no consistent evidence of occupancy in clade A BG505. Glycans were built with Glycan Reader & Modeler in CHARMM-GUI, preserving the GlcNAc / GlcNAc2 / ManGlcNAc2 cores resolved in the cryo-EM structures as a scaffold where feasible. Per-chain detail: Supplementary Tables 1-3 of the related publication.. Setup: TIP3P water, 150 mM NaCl. Sampling: 5 × 1050 ns, one frame every 100 ps. Related publication: https://doi.org/10.1038/s41467-026-71874-2. This entry is metadata only. Trajectories stored on lab storage; available on request. Contact: maalbani@ucsd.edu.",
+  "size_gb": 161.62,
+  "files": 5,
+  "lab": "Amaro Lab, UC San Diego",
+  "contact": "maalbani@ucsd.edu",
+  "system": {
+    "construct": "Full-length HIV-1 clade A BG505 Env trimer (gp160), three protomers, glycosylated and palmitoylated, embedded in an asymmetric lipid bilayer mimicking the composition of the viral budding site. Ectodomain HXB2 residues 31-662, with the SOSIP mutations and the furin cleavage site reverted to the native clade A sequence (UniProt Q2N0S6); MPER, transmembrane domain and cytoplasmic tail included; the two cytoplasmic-tail cysteines C764 and C837 palmitoylated.",
+    "starting_structure": "Composite model. Ectodomain built on the BG505 SOSIP.664 crystal structure (PDB 5T3Z, 3.5 A), with the missing gaps modelled as disordered loops in Modeller 10.3. MPER-TMD-CT built by i-TASSER homology modelling on the clade D NMR structure PDB 7LOI, carrying the clade A sequence. The two halves were joined through the HR2 helix (residues 637-668) re-modelled with AlphaFold2, and the junction relaxed with autoIMD in VMD. The finished MPER was checked against the crystal structure PDB 4G6F.",
+    "glycan_profile": "Heterogeneous, site-specific profile derived from glycoanalytic data for clade A BG505 viral Env: 23 N-linked sites glycosylated per monomer, not uniform across protomers. N185e, N185h, N618 and N625 are left unoccupied, as they have no consistent evidence of occupancy in clade A BG505. Glycans were built with Glycan Reader & Modeler in CHARMM-GUI, preserving the GlcNAc / GlcNAc2 / ManGlcNAc2 cores resolved in the cryo-EM structures as a scaffold where feasible. Per-chain detail: Supplementary Tables 1-3 of the related publication.",
+    "total_atoms": 256522
+  },
+  "setup": {
+    "force_field": "CHARMM36m",
+    "water_model": "TIP3P",
+    "ions": "150 mM NaCl",
+    "software": "NAMD3",
+    "ensemble": "NPT",
+    "temperature_K": 310,
+    "pressure_bar": 1.01325,
+    "timestep_fs": 2
+  },
+  "sampling": {
+    "replicas": 5,
+    "complete_replicas": 5,
+    "planned_length_ns": null,
+    "length_per_replica_ns": 1050.0,
+    "frame_interval_ps": 100,
+    "nominal_length_ns": 1000,
+    "replica_lengths_ns": [
+      1050.0,
+      1050.0,
+      1050.0,
+      1050.0,
+      1050.0
+    ],
+    "total_ns": 5250.0,
+    "length_basis": "declared frame interval",
+    "replicas_detail": [
+      {
+        "id": "md_R1",
+        "length_ns": 1050.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10500,
+        "path": ".",
+        "location": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs"
+      },
+      {
+        "id": "md_R2",
+        "length_ns": 1050.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10500,
+        "path": ".",
+        "location": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs"
+      },
+      {
+        "id": "md_R3",
+        "length_ns": 1050.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10500,
+        "path": ".",
+        "location": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs"
+      },
+      {
+        "id": "md_R4",
+        "length_ns": 1050.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10500,
+        "path": ".",
+        "location": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs"
+      },
+      {
+        "id": "md_R5",
+        "length_ns": 1050.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10500,
+        "path": ".",
+        "location": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs"
+      }
+    ]
+  },
+  "data_availability": "Trajectories stored on lab storage; available on request",
+  "related_publication": "https://doi.org/10.1038/s41467-026-71874-2",
+  "license": "CC-BY-4.0",
+  "data_owner": {
+    "name": "Rommie E. Amaro",
+    "email": "ramaro@ucsd.edu",
+    "orcid": null,
+    "affiliation": "UC San Diego"
+  },
+  "access_level": null,
+  "ai_training": "by-agreement",
+  "data_location": {
+    "storage": "Amaro Lab GPFS storage, UC San Diego",
+    "path": "/net/gpfs-amarolab/maalbani/ABZYME/1-FULL-GP120/MDs",
+    "uri": null
+  },
+  "authors": "Mohamed Shehata, Lorenzo Casalino, Madeleine Duquette, Siyu Chen, Alex Flaherty, Patrick M. Waller, Elizabeth Villa, Rommie E. Amaro",
+  "description_basis": "composed",
+  "protocol": [],
+  "lab_glossary": {
+    "record_id": "MDs/70c12cdf",
+    "md_keys": [
+      "MDs/md_R1",
+      "MDs/md_R2",
+      "MDs/md_R3",
+      "MDs/md_R4",
+      "MDs/md_R5"
+    ]
+  },
+  "record": "1-FULL-GP120_5-replicas.json"
+}

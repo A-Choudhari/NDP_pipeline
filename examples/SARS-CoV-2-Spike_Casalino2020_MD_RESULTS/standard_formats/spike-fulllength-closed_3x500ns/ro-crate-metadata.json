@@ -1,0 +1,313 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "identifier": "AMARO-SARSCOV2-SPIKE-CLOSED",
+      "name": "SARS-CoV-2 full-length spike glycoprotein, closed state: all-atom MD",
+      "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the closed state (all RBDs 'down'), protein + glycans only (not aligned). PSF and DCD files are provided. 3 replicas.",
+      "keywords": [
+        "molecular dynamics",
+        "Amaro Lab",
+        "SARS-CoV-2",
+        "spike glycoprotein",
+        "glycan shield",
+        "NAMD",
+        "CHARMM36"
+      ],
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-10-01",
+      "license": {
+        "@id": "https://spdx.org/licenses/CC-BY-4.0"
+      },
+      "author": [
+        {
+          "@id": "#person-Lorenzo-Casalino"
+        },
+        {
+          "@id": "#person-Zied-Gaieb"
+        },
+        {
+          "@id": "#person-Jory-A.-Goldsmith"
+        },
+        {
+          "@id": "#person-Christy-K.-Hjorth"
+        },
+        {
+          "@id": "#person-Abigail-C.-Dommer"
+        },
+        {
+          "@id": "#person-Aoife-M.-Harbison"
+        },
+        {
+          "@id": "#person-Carl-A.-Fogarty"
+        },
+        {
+          "@id": "#person-Emilia-P.-Barros"
+        },
+        {
+          "@id": "#person-Bryn-C.-Taylor"
+        },
+        {
+          "@id": "#person-Jason-S.-McLellan"
+        },
+        {
+          "@id": "#person-Elisa-Fadda"
+        },
+        {
+          "@id": "#person-Rommie-E.-Amaro"
+        }
+      ],
+      "publisher": {
+        "@id": "https://amarolab.ucsd.edu"
+      },
+      "accountablePerson": {
+        "@id": "#owner-Rommie-E.-Amaro"
+      },
+      "contactPoint": {
+        "@id": "mailto:ramaro@ucsd.edu"
+      },
+      "citation": "https://doi.org/10.1021/acscentsci.0c01056",
+      "usageInfo": "Use of this data to train AI/ML models requires the data owner's agreement.",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/wfrun/process/0.5"
+      },
+      "hasPart": [
+        {
+          "@id": "record.json"
+        },
+        {
+          "@id": "dataset.jsonld"
+        }
+      ],
+      "mentions": [
+        {
+          "@id": "#run-CLOSED_R1"
+        },
+        {
+          "@id": "#run-CLOSED_R2"
+        },
+        {
+          "@id": "#run-CLOSED_R3"
+        },
+        {
+          "@id": "#metadata-extraction"
+        }
+      ]
+    },
+    {
+      "@id": "#person-Lorenzo-Casalino",
+      "@type": "Person",
+      "name": "Lorenzo Casalino"
+    },
+    {
+      "@id": "#person-Zied-Gaieb",
+      "@type": "Person",
+      "name": "Zied Gaieb"
+    },
+    {
+      "@id": "#person-Jory-A.-Goldsmith",
+      "@type": "Person",
+      "name": "Jory A. Goldsmith"
+    },
+    {
+      "@id": "#person-Christy-K.-Hjorth",
+      "@type": "Person",
+      "name": "Christy K. Hjorth"
+    },
+    {
+      "@id": "#person-Abigail-C.-Dommer",
+      "@type": "Person",
+      "name": "Abigail C. Dommer"
+    },
+    {
+      "@id": "#person-Aoife-M.-Harbison",
+      "@type": "Person",
+      "name": "Aoife M. Harbison"
+    },
+    {
+      "@id": "#person-Carl-A.-Fogarty",
+      "@type": "Person",
+      "name": "Carl A. Fogarty"
+    },
+    {
+      "@id": "#person-Emilia-P.-Barros",
+      "@type": "Person",
+      "name": "Emilia P. Barros"
+    },
+    {
+      "@id": "#person-Bryn-C.-Taylor",
+      "@type": "Person",
+      "name": "Bryn C. Taylor"
+    },
+    {
+      "@id": "#person-Jason-S.-McLellan",
+      "@type": "Person",
+      "name": "Jason S. McLellan"
+    },
+    {
+      "@id": "#person-Elisa-Fadda",
+      "@type": "Person",
+      "name": "Elisa Fadda"
+    },
+    {
+      "@id": "#person-Rommie-E.-Amaro",
+      "@type": "Person",
+      "name": "Rommie E. Amaro"
+    },
+    {
+      "@id": "#owner-Rommie-E.-Amaro",
+      "@type": "Person",
+      "name": "Rommie E. Amaro",
+      "email": "ramaro@ucsd.edu",
+      "affiliation": "UC San Diego"
+    },
+    {
+      "@id": "https://amarolab.ucsd.edu",
+      "@type": "Organization",
+      "name": "Amaro Lab, UC San Diego",
+      "url": "https://amarolab.ucsd.edu"
+    },
+    {
+      "@id": "mailto:ramaro@ucsd.edu",
+      "@type": "ContactPoint",
+      "email": "ramaro@ucsd.edu",
+      "contactType": "data requests"
+    },
+    {
+      "@id": "https://spdx.org/licenses/CC-BY-4.0",
+      "@type": "CreativeWork",
+      "name": "CC-BY-4.0"
+    },
+    {
+      "@id": "https://w3id.org/ro/wfrun/process/0.5",
+      "@type": "CreativeWork",
+      "name": "Process Run Crate",
+      "version": "0.5"
+    },
+    {
+      "@id": "#software-NAMD-2.14",
+      "@type": "SoftwareApplication",
+      "name": "NAMD",
+      "softwareVersion": "2.14",
+      "description": "Frontera, TACC"
+    },
+    {
+      "@id": "#ndp-pipeline",
+      "@type": "SoftwareApplication",
+      "name": "NDP_PIPELINE (MD publishing pipeline)",
+      "description": "Reads trajectory headers, MD configs and run logs and writes one metadata record per simulated system."
+    },
+    {
+      "@id": "#raw-CLOSED_R1",
+      "@type": "Dataset",
+      "name": "Raw trajectory files, replica CLOSED_R1",
+      "description": "Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/CLOSED"
+    },
+    {
+      "@id": "#run-CLOSED_R1",
+      "@type": "CreateAction",
+      "name": "Production MD, replica CLOSED_R1",
+      "description": "543.5 ns, 5435 frames",
+      "instrument": {
+        "@id": "#software-NAMD-2.14"
+      },
+      "result": {
+        "@id": "#raw-CLOSED_R1"
+      },
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#raw-CLOSED_R2",
+      "@type": "Dataset",
+      "name": "Raw trajectory files, replica CLOSED_R2",
+      "description": "Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/CLOSED"
+    },
+    {
+      "@id": "#run-CLOSED_R2",
+      "@type": "CreateAction",
+      "name": "Production MD, replica CLOSED_R2",
+      "description": "573.8 ns, 5738 frames",
+      "instrument": {
+        "@id": "#software-NAMD-2.14"
+      },
+      "result": {
+        "@id": "#raw-CLOSED_R2"
+      },
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#raw-CLOSED_R3",
+      "@type": "Dataset",
+      "name": "Raw trajectory files, replica CLOSED_R3",
+      "description": "Amaro Lab GPFS storage, UC San Diego: /net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/CLOSED"
+    },
+    {
+      "@id": "#run-CLOSED_R3",
+      "@type": "CreateAction",
+      "name": "Production MD, replica CLOSED_R3",
+      "description": "614.1 ns, 6141 frames",
+      "instrument": {
+        "@id": "#software-NAMD-2.14"
+      },
+      "result": {
+        "@id": "#raw-CLOSED_R3"
+      },
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "record.json",
+      "@type": "File",
+      "name": "MD metadata record",
+      "encodingFormat": "application/json",
+      "contentSize": "3928"
+    },
+    {
+      "@id": "dataset.jsonld",
+      "@type": "File",
+      "name": "schema.org / DCAT description",
+      "encodingFormat": "application/ld+json"
+    },
+    {
+      "@id": "#metadata-extraction",
+      "@type": "CreateAction",
+      "name": "Metadata read from the trajectories, configs and logs",
+      "description": "Every value in the record was read from the replicas' own files or declared in settings.yaml; the record says which.",
+      "instrument": {
+        "@id": "#ndp-pipeline"
+      },
+      "object": [
+        {
+          "@id": "#raw-CLOSED_R1"
+        },
+        {
+          "@id": "#raw-CLOSED_R2"
+        },
+        {
+          "@id": "#raw-CLOSED_R3"
+        }
+      ],
+      "result": {
+        "@id": "record.json"
+      },
+      "endTime": "2026-10-01"
+    }
+  ]
+}

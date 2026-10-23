@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  pipeline.svg : the three kits, one path.
+
+  Authored by hand so it stays diffable, and rendered two ways from this one
+  source: pandoc puts it in the guide as an <img>, and rsvg-convert rasterises
+  it for the deck, because python-pptx cannot place an SVG.
+
+  Liberation Sans on purpose. Inter is not installed on this host, and an SVG
+  asking for it substitutes silently, which shifts every label just enough to
+  overflow its box.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 632" width="1640"
+     height="632" font-family="Liberation Sans, Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7"
+            markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6a707c"/>
+    </marker>
+    <style>
+      .kit    { fill:#ffffff; stroke:#1596b8; stroke-width:2; rx:10 }
+      .src    { fill:#f7f8fa; stroke:#c8ced6; stroke-width:2; rx:10 }
+      .out    { fill:#f7f8fa; stroke:#e3e6ea; stroke-width:1.5; rx:8 }
+      .share  { fill:#ffffff; stroke:#7b5cd6; stroke-width:2.5; rx:10 }
+      .h      { font-size:20px; font-weight:700; fill:#16181d }
+      .hk     { font-size:20px; font-weight:700; fill:#1596b8 }
+      .hs     { font-size:20px; font-weight:700; fill:#7b5cd6 }
+      .cmd    { font-size:13.5px; fill:#6a707c;
+                font-family:"Liberation Mono",monospace }
+      .f      { font-size:14.5px; fill:#16181d;
+                font-family:"Liberation Mono",monospace }
+      .n      { font-size:13px; fill:#6a707c }
+      .tag    { font-size:12.5px; font-weight:700; fill:#1596b8 }
+      .tagp   { font-size:12.5px; font-weight:700; fill:#7b5cd6 }
+      .arrow  { stroke:#6a707c; stroke-width:2; fill:none; marker-end:url(#a) }
+      .gl     { fill:#eef7fa; stroke:#1596b8; stroke-width:1.5; rx:8 }
+    </style>
+  </defs>
+
+  <!-- ============ 0. the folder you already have ============ -->
+  <rect class="src" x="16" y="96" width="236" height="188"/>
+  <text class="h"  x="34" y="128">Your folder</text>
+  <text class="n"  x="34" y="150">finished simulations</text>
+  <text class="f"  x="34" y="182">pr.part*.dcd</text>
+  <text class="f"  x="34" y="206">system.psf</text>
+  <text class="f"  x="34" y="230">PR.conf · pr.log</text>
+  <text class="tag" x="34" y="264">READ, NEVER WRITTEN</text>
+
+  <path class="arrow" d="M258,190 L306,190"/>
+
+  <!-- ============ 1. the metadata kit ============ -->
+  <rect class="kit" x="312" y="60" width="356" height="260"/>
+  <text class="hk"  x="332" y="92">1 · NDP_PIPELINE</text>
+  <text class="cmd" x="332" y="116">ndp_pipeline.sh &lt;folder&gt;</text>
+  <text class="n"   x="332" y="140">reads every header, topology and config</text>
+
+  <rect class="out" x="332" y="156" width="316" height="146"/>
+  <text class="n"  x="348" y="178">writes into MD_RESULTS/</text>
+  <text class="f"  x="348" y="202">&lt;NAME&gt;.json · catalog.json</text>
+  <text class="f"  x="348" y="226">glossary.md · glossary.parquet</text>
+  <text class="f"  x="348" y="250">NDP_registration.md</text>
+  <text class="f"  x="348" y="274">settings.yaml</text>
+  <text class="tag" x="348" y="294">★ THE ONE FILE YOU EDIT</text>
+
+  <path class="arrow" d="M674,190 L722,190"/>
+
+  <!-- ============ 2. the analysis kit ============ -->
+  <rect class="kit" x="728" y="60" width="356" height="260"/>
+  <text class="hk"  x="748" y="92">2 · MD_ANALYSES</text>
+  <text class="cmd" x="748" y="116">analyse.py &lt;folder&gt;</text>
+  <text class="n"   x="748" y="140">reads the glossary, not your files again</text>
+
+  <rect class="out" x="748" y="156" width="316" height="146"/>
+  <text class="n"  x="764" y="178">writes into MD_RESULTS/analyses/</text>
+  <text class="f"  x="764" y="202">data/*.tsv · data/*.parquet</text>
+  <text class="f"  x="764" y="226">data/*.manifest.json</text>
+  <text class="f"  x="764" y="250">figures/ · frames.json</text>
+  <text class="f"  x="764" y="274">page_story.html</text>
+  <text class="tag" x="764" y="294">★ THE PAGE A READER OPENS</text>
+
+  <path class="arrow" d="M1090,190 L1138,190"/>
+
+  <!-- ============ 3. the collector ============ -->
+  <rect class="kit" x="1144" y="60" width="480" height="120"/>
+  <text class="hk"  x="1164" y="92">3 · MD_COLLECT</text>
+  <text class="cmd" x="1164" y="116">collect_pipeline.sh --all</text>
+  <text class="n"   x="1164" y="140">copies the whole MD_RESULTS/, byte for byte,</text>
+  <text class="n"   x="1164" y="160">links kept as links, sources untouched</text>
+
+  <path class="arrow" d="M1384,186 L1384,228"/>
+
+  <rect class="share" x="1144" y="234" width="480" height="132"/>
+  <text class="hs" x="1164" y="266">MD_NDP_DATA/</text>
+  <text class="f"  x="1164" y="292">&lt;PREFIX&gt;_MD_RESULTS/</text>
+  <text class="f"  x="1164" y="316">INDEX.md · index.json</text>
+  <text class="tagp" x="1164" y="344">14 COLLECTIONS · 66 RECORDS · 98.5 µs</text>
+
+  <!-- ============ the joint ============ -->
+  <rect class="gl" x="312" y="360" width="772" height="104"/>
+  <text class="h" x="332" y="390">glossary — one entry per MD</text>
+  <text class="n" x="332" y="414">frames · ns per frame · topology · engine · and how each value was established.</text>
+  <text class="n" x="332" y="436">Both kits read it, so a record and a figure cannot disagree</text>
+  <text class="n" x="332" y="456">about what an MD is.</text>
+  <path class="arrow" d="M490,356 L490,326"/>
+  <path class="arrow" d="M906,356 L906,326"/>
+
+  <!-- ============ what leaves ============ -->
+  <text class="h" x="1144" y="418">Two things leave</text>
+  <text class="n" x="1144" y="442">→ a record registered on the National Data</text>
+  <text class="n" x="1164" y="462">Platform, which stores metadata only</text>
+  <text class="n" x="1144" y="486">→ a page and its tables, for the lab and</text>
+  <text class="n" x="1164" y="506">for whoever the work is shared with</text>
+
+  <!-- ============ the rule ============ -->
+  <rect class="out" x="16" y="504" width="1084" height="104"/>
+  <text class="h" x="36" y="534">What it will not do</text>
+  <text class="n" x="36" y="558">It never writes into your data. It never guesses: a value nobody established stays null and the</text>
+  <text class="n" x="36" y="578">record says "incomplete". It refuses to state a number the sampling cannot support, and every</text>
+  <text class="n" x="36" y="598">value it does state carries how it was established.</text>
+</svg>

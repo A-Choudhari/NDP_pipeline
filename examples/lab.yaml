@@ -1,0 +1,119 @@
+# examples/lab.yaml -- a filled-in lab file: the one the two worked examples
+# were built with. Use it as a model for your own `lab.yaml` at the top of the
+# kit; it is not read by the pipeline from here.
+#
+# lab.yaml -- everything in this kit that belongs to one lab.
+#
+# Another lab edits THIS FILE and nothing else. The code holds no lab names,
+# identifiers, topics, people or licences of its own: without this file every
+# lab-specific value is simply empty, and records stay `incomplete` until a
+# person supplies it.
+#
+# Read by NDP_PIPELINE (and its copy in MDDB_PIPELINE), MD_COLLECT and
+# MDDB_PIPELINE/install_mwf.sh. Point MD_PIPELINE_LAB at another file to use
+# that one instead (one kit, several labs).
+#
+# Precedence, lowest to highest: this file < `ndp: defaults:` in a folder's
+# settings.yaml < that file's `datasets:` block < `ndp: datasets:` < one system.
+# A key left empty at any level falls through to the level below.
+
+lab:
+  name: "Amaro Lab, UC San Diego"     # `lab:` in every record; the publisher in the standard formats
+  short_name: "Amaro Lab"             # collection titles, hints
+  url: https://amarolab.ucsd.edu
+  catalog_name: "Amaro Lab data catalog"
+  catalog_url: https://amarolab.ucsd.edu/data-catalog/
+  ndp_organization:                   # the publisher on NDP once it lists one; empty = "Individual"
+
+identifiers:
+  # First word of every suggested identifier: AMARO-HIV-ENV-001.
+  # The NDP_ID_PREFIX environment variable still overrides it.
+  prefix: AMARO
+
+# What every NEW settings.yaml starts with under `ndp: defaults:`, and what any
+# record falls back to when a folder leaves a key empty.
+record_defaults:
+  keywords: [molecular dynamics, Amaro Lab]
+  data_availability: "Trajectories stored on lab storage; available on request"
+  # Who owns the data: the PI accountable for it. Only `name` is required.
+  data_owner:
+    name: Rommie E. Amaro
+    email: ramaro@ucsd.edu
+    orcid:
+    affiliation: UC San Diego
+  # Who may get the raw files: public | private | licensable.
+  # Left empty on purpose: a record is `incomplete` until someone decides.
+  access_level:
+  # May the data be used to TRAIN AI/ML models? Separate from the citation
+  # licence (CC-BY says nothing about it): allowed | prohibited | by-agreement.
+  # Lab policy (2026-10-01): only with the data owner's agreement.
+  ai_training: by-agreement
+  # Where the raw files live. `path` is measured for every record; these name
+  # the storage it is on and, when there is one, a URL to fetch it from
+  # (Globus, https, s3).
+  data_location:
+    storage: "Amaro Lab GPFS storage, UC San Diego"
+    uri:
+
+# Attribution and licence are decisions a PERSON takes for THEIR data, so they
+# are pre-filled into new `datasets:` blocks only for the accounts listed here
+# (the folder's owner on disk, or `folder: owner:`). Everyone else gets the
+# keys empty.
+people:
+  maalbani:
+    authors: [Marco Albani, Rommie Amaro]
+    contact: maalbani@ucsd.edu
+    license: Creative Commons Attribution 4.0 International
+    license_url: https://creativecommons.org/licenses/by/4.0/
+
+# The catalogue's research topics. For each topic slug:
+#   code      the topic segment of an identifier (AMARO-<code>-...)
+#   molecule  what a suggested title names when the topic is a pathogen
+#   words     folder or topic words that file a dataset under it
+topics:
+  hiv:            {code: HIV, molecule: Env, words: [hiv, env, gp120, gp41, bg505]}
+  influenza:      {code: INF, molecule: Neuraminidase, words: [influenza, flu, h1n1, h3n2, neuraminidase]}
+  covid-19:       {code: COV2, molecule: Spike, words: [covid, sars, spike, mpro, nsp14]}
+  ebola:          {code: EBOV, words: [ebola]}
+  lipid-vesicles: {code: LIPID, words: [vesicle, lipid]}
+  p53:            {code: P53, words: [p53]}
+  apobec3b:       {code: A3B, words: [apobec, a3b]}
+  cpla2:          {code: CPLA2, words: [cpla2]}
+
+# Research areas init.py proposes from directory names, before any record
+# exists (regexes, matched case-insensitively; single quotes). Distilled from
+# a survey of the lab's 67 top-level directories, 2026-09-02. Bare `env` is
+# deliberately absent: it matches python environments (af3_env) far more
+# often than HIV envelope.
+index_topics:
+  HIV-1: ['\bhiv\b', 'gp120', 'gp41', 'sosip', '\bmper\b', 'cd4bs', '\bvrc01\b',
+          'bnab', 'abzyme', '\bbg505\b', 'env[ ]?trimer', 'hiv[ ]?env', '\bcd4\b']
+  SARS-CoV-2: ['sars', 'cov-?2', 'covid', '\bspike\b', '\brbd\b', '\bmpro\b',
+               '\bnsp\d', 'sarbecovirus', '\bace2\b', 'omicron', 'delta',
+               'hexapro', 'd614g', 'coronavirus', '\bexon\b', 'pancovac']
+  Influenza: ['influenza', '\bflu\b', 'h1n1', 'h5n1', 'h3n2', 'hemagglutinin',
+              'neuraminidase', 'arbidol']
+  Ebola: ['ebola', '\bebov\b', 'filovirus', 'marburg']
+  Zika: ['zika', '\bzikv\b']
+  Lassa: ['lassa', '\blasv\b']
+  Nipah: ['nipah', '\bniv\b']
+  Dengue: ['dengue', '\bdenv\b']
+  APOBEC3: ['apobec', '\ba3a\b', '\ba3b\b', '\ba3g\b']
+  Cancer-targets: ['\bp53\b', '\bkras\b', '\bbrd4\b', '\bnik\b', '\bhsp90\b',
+                   '\bjak\b', '\birak\b', '\blrrk2\b']
+  Lipids-Aerosols: ['monolayer', 'bilayer', '\bdppc\b', '\bdppa\b', '\blps\b',
+                    'micelle', 'lipidwrapper', '\bssa\b', 'aerosol', 'vesicle',
+                    'membrane', 'lipase']
+  Glycans-Mucins: ['glycan', 'mucin', '\bgag\b', 'glyco', 'muc16', 'sialic']
+  Kinetics-methods: ['seekr', '\bmmvt\b', 'milestoning', '\bramd\b', 'dctmd',
+                     '\bfep\b', '\bpmf\b', 'umbrella', 'metadynamics', 'markov',
+                     '\bmsm\b']
+  Nucleic-acids: ['aptamer', '\brna\b', '\bdna\b', '\bpna\b', 'crispr',
+                  'ribosome', 'riboswitch']
+  Docking-screening: ['docking', '\bglide\b', 'virtual.?screen', '\bvina\b',
+                      'celpp', 'bindingdb', 'pdbbind', 'enamine']
+
+storage:
+  # The lab's data tree. install_mwf.sh refuses to install into it: a new
+  # top-level directory there is picked up by the index as unexplained content.
+  data_roots: [/net/gpfs-amarolab]

@@ -1,0 +1,30 @@
+# lab_fixture.yaml -- the lab the tests run as, so they pass whatever a lab
+# writes into the kit's own lab.yaml. Synthetic: no real person or storage.
+lab:
+  name: "Test Lab, Example University"
+  short_name: "Test Lab"
+  catalog_name: "Test Lab data catalog"
+identifiers:
+  prefix: TESTLAB
+record_defaults:
+  keywords: [molecular dynamics, Test Lab]
+  data_availability: "Trajectories stored on lab storage; available on request"
+  data_owner: {name: Pat Investigator, email: pi@example.edu, orcid:, affiliation: Example University}
+  access_level:
+  ai_training:
+  data_location: {storage: "Test Lab cluster storage", uri:}
+people: {}
+topics:
+  hiv:            {code: HIV, molecule: Env, words: [hiv, env, gp120, gp41, bg505]}
+  influenza:      {code: INF, molecule: Neuraminidase, words: [influenza, flu, h1n1, h3n2, neuraminidase]}
+  covid-19:       {code: COV2, molecule: Spike, words: [covid, sars, spike, mpro, nsp14]}
+  ebola:          {code: EBOV, words: [ebola]}
+  lipid-vesicles: {code: LIPID, words: [vesicle, lipid]}
+  p53:            {code: P53, words: [p53]}
+  apobec3b:       {code: A3B, words: [apobec, a3b]}
+  cpla2:          {code: CPLA2, words: [cpla2]}
+index_topics:
+  HIV-1: ['\bhiv\b', 'gp120', 'gp41', 'abzyme', '\bbg505\b']
+  SARS-CoV-2: ['sars', 'cov-?2', 'covid', '\bspike\b']
+storage:
+  data_roots: []

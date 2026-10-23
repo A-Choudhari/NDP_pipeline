@@ -1,0 +1,48 @@
+@page { size: A4; margin: 18mm 16mm; }
+body { font-family: "DejaVu Sans","Noto Sans",Helvetica,Arial,sans-serif;
+       font-size: 10.5pt; line-height: 1.5; color: #16181d; max-width: none; margin: 0; }
+h1 { font-size: 21pt; margin: 0 0 2pt; letter-spacing: -.01em; }
+h3 { font-size: 12pt; font-weight: 600; color: #4a5160; margin: 0 0 4pt; }
+h2 { font-size: 13.5pt; margin: 20pt 0 6pt; padding-top: 4pt;
+     border-top: 1px solid #d9dde3; page-break-after: avoid; }
+h2 + p, h2 + table, h2 + pre, h2 + blockquote { page-break-before: avoid; }
+p, li { orphans: 3; widows: 3; }
+code { font-family: "DejaVu Sans Mono",monospace; font-size: 9pt;
+       background: #f2f4f7; padding: 1px 3px; border-radius: 3px; }
+pre { background: #f7f8fa; border: 1px solid #e3e6ea; border-radius: 5px;
+      padding: 8pt 10pt; font-size: 8.6pt; line-height: 1.42; overflow-x: hidden;
+      white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: none; padding: 0; font-size: inherit; }
+table { border-collapse: collapse; width: 100%; font-size: 9.4pt; margin: 8pt 0;
+        page-break-inside: avoid; }
+th, td { text-align: left; padding: 4pt 8pt 4pt 0; border-bottom: 1px solid #e3e6ea;
+         vertical-align: top; }
+th { font-size: 8.4pt; text-transform: uppercase; letter-spacing: .05em; color: #6a707c; }
+blockquote { margin: 10pt 0; padding: 6pt 12pt; border-left: 3px solid #1596b8;
+             background: #f4fbfd; color: #2a3038; }
+blockquote p { margin: 0; }
+hr { border: 0; border-top: 1px solid #d9dde3; margin: 14pt 0; }
+strong { font-weight: 650; }
+#TOC { font-size: 9.6pt; background: #f7f8fa; border: 1px solid #e3e6ea;
+       border-radius: 5px; padding: 8pt 14pt; page-break-inside: avoid; }
+#TOC ul { margin: 2pt 0; padding-left: 16pt; }
+a { color: #0b6e8f; text-decoration: none; }
+header#title-block-header { margin-bottom: 4pt; }
+h1.title { font-size: 22pt; line-height: 1.15; margin: 0 0 4pt; }
+p.subtitle { font-size: 12pt; font-weight: 600; color: #4a5160; margin: 0 0 8pt; }
+p.author, p.date { display: inline; font-size: 10pt; color: #6a707c; margin: 0; }
+p.author::after { content: " · "; }
+#TOC { margin-top: 14pt; }
+#TOC::before { content: "Contents"; display: block; font-size: 8.4pt;
+  text-transform: uppercase; letter-spacing: .06em; color: #6a707c; margin-bottom: 4pt; }
+#TOC > ul { padding-left: 0; list-style: none; margin: 0;
+  columns: 2; column-gap: 24pt; }
+#TOC li { break-inside: avoid; margin: 1pt 0; }
+
+/* The integration diagram and the page screenshots. Without a max-width an
+   SVG or a 3,000-pixel PNG runs off the right edge of the printed page, and
+   without the page-break rule one gets sliced across two. */
+img{max-width:100%;height:auto;display:block;margin:14px auto;
+    page-break-inside:avoid}
+figure{margin:14px 0}
+figcaption{font-size:9.5pt;color:#555;text-align:center;margin-top:4px}

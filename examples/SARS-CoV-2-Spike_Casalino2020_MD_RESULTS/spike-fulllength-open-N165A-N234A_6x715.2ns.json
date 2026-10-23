@@ -1,0 +1,140 @@
+{
+  "identifier": "AMARO-SARSCOV2-SPIKE-N165A_N234A_MUTANT",
+  "topic": "covid-19",
+  "tags": [
+    "spike",
+    "open-state",
+    "glycans",
+    "glycan-deletion",
+    "N165A",
+    "N234A",
+    "SARS-CoV-2"
+  ],
+  "title": "SARS-CoV-2 full-length spike glycoprotein, open state, N165A/N234A: all-atom MD",
+  "description": "All-atom MD simulations of the full-length SARS-CoV-2 spike glycoprotein in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions, protein + glycans only (not aligned). PSF and DCD files are provided. 6 replicas; replicas 4-6 were run with adaptive sampling.",
+  "size_gb": 36.72,
+  "files": 6,
+  "lab": "Amaro Lab, UC San Diego",
+  "contact": "ramaro@ucsd.edu",
+  "system": {
+    "construct": "Full-length SARS-CoV-2 spike glycoprotein homotrimer, residues 16-1273 per chain (chains A, B, C; segments S1 16-685, S2 686-1273), in the open state (chain A RBD 'up') bearing the N165A and N234A substitutions. Non-canonical residues: HSD/HSE neutral histidines, CYP palmitoylated cysteine. Shared trajectories hold protein + glycans only and are not aligned; water, ions and the POPC/POPS/POPI/POPE/CHL bilayer were stripped.",
+    "starting_structure": "PDB 6VSB (chain A RBD 'up'), with N165A and N234A substitutions",
+    "glycan_profile": "60 N-glycans (20 per chain: G6/G7, G30/G31 and G53/G54 removed with the N165A and N234A substitutions) and 4 O-glycans (G23, G24 chain A; G47 chain B; G70 chain C), all on glycan chain G. Residues used: BGLN, AGAN, BGAL, BMAN, AMAN, AFUC, ANE5.",
+    "total_atoms": 71294
+  },
+  "setup": {
+    "force_field": "CHARMM36 all-atom additive",
+    "water_model": "TIP3P",
+    "ions": "150 mM NaCl (Na+/Cl-), neutralising",
+    "software": "NAMD 2.14 (Frontera, TACC)",
+    "ensemble": "NPT",
+    "temperature_K": 310,
+    "pressure_bar": 1.01325,
+    "timestep_fs": 2
+  },
+  "sampling": {
+    "replicas": 6,
+    "complete_replicas": 6,
+    "planned_length_ns": null,
+    "length_per_replica_ns": 715.2,
+    "frame_interval_ps": 100,
+    "nominal_length_ns": null,
+    "replica_lengths_ns": [
+      1001.3,
+      1036.2,
+      1018.4,
+      411.7,
+      407.0,
+      416.6
+    ],
+    "total_ns": 4291.2,
+    "length_basis": "declared frame interval",
+    "replicas_detail": [
+      {
+        "id": "MUTANT_R1",
+        "length_ns": 1001.3,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10013,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      },
+      {
+        "id": "MUTANT_R2",
+        "length_ns": 1036.2,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10362,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      },
+      {
+        "id": "MUTANT_R3",
+        "length_ns": 1018.4,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 10184,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      },
+      {
+        "id": "MUTANT_R4",
+        "length_ns": 411.7,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4117,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      },
+      {
+        "id": "MUTANT_R5",
+        "length_ns": 407.0,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4070,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      },
+      {
+        "id": "MUTANT_R6",
+        "length_ns": 416.6,
+        "planned_ns": null,
+        "complete": true,
+        "frames": 4166,
+        "path": "MUTANT",
+        "location": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT"
+      }
+    ]
+  },
+  "data_availability": "Trajectories stored on lab storage; available on request",
+  "related_publication": "https://doi.org/10.1021/acscentsci.0c01056",
+  "license": "CC-BY-4.0",
+  "data_owner": {
+    "name": "Rommie E. Amaro",
+    "email": "ramaro@ucsd.edu",
+    "orcid": null,
+    "affiliation": "UC San Diego"
+  },
+  "access_level": null,
+  "ai_training": "by-agreement",
+  "data_location": {
+    "storage": "Amaro Lab GPFS storage, UC San Diego",
+    "path": "/net/gpfs-amarolab/lcasalino/CORONAVIRUS/SPIKE_CLEAVED/TO_SHARE_FOR_PUBLICATION/MUTANT",
+    "uri": null
+  },
+  "authors": "Lorenzo Casalino, Zied Gaieb, Jory A. Goldsmith, Christy K. Hjorth, Abigail C. Dommer, Aoife M. Harbison, Carl A. Fogarty, Emilia P. Barros, Bryn C. Taylor, Jason S. McLellan, Elisa Fadda, Rommie E. Amaro",
+  "description_basis": "declared",
+  "protocol": [],
+  "lab_glossary": {
+    "record_id": "MUTANT/783dd3bb",
+    "md_keys": [
+      "MUTANT/MUTANT_R1",
+      "MUTANT/MUTANT_R2",
+      "MUTANT/MUTANT_R3",
+      "MUTANT/MUTANT_R4",
+      "MUTANT/MUTANT_R5",
+      "MUTANT/MUTANT_R6"
+    ]
+  },
+  "record": "spike-fulllength-open-N165A-N234A_6x715.2ns.json"
+}
